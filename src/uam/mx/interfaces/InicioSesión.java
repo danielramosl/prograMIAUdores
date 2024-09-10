@@ -9,7 +9,7 @@ package uam.mx.interfaces;
  * @author HP
  */
 public class InicioSesión extends javax.swing.JFrame {
-    String s = "Ay mi gatito miau miau";
+    String s = "Gatitos, gatitos";
     /**
      * Creates new form InicioSesión
      */
