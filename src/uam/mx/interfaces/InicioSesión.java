@@ -47,7 +47,7 @@ public class InicioSesión extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(90, 90, 90)
                         .addComponent(jLabel2)))
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(542, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -56,7 +56,7 @@ public class InicioSesión extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(65, 65, 65)
                 .addComponent(jLabel1)
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(445, Short.MAX_VALUE))
         );
 
         pack();
