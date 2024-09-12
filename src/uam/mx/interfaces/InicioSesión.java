@@ -54,7 +54,7 @@ public class InicioSesión extends javax.swing.JFrame {
         lbl_Contrasena.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_Contrasena.setText("Contraseña:");
 
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imágenes/logo2 (2).png"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imágenes/logo.png"))); // NOI18N
 
         lbl_Usuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_Usuario.setText("Usuario:");
