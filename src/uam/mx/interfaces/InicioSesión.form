@@ -57,17 +57,26 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="132" pref="132" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lbl_Contrasena" min="-2" pref="114" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="lbl_Existe" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btn_IniciarSesion" min="-2" pref="157" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lbl_Usuario" min="-2" pref="102" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txt_Usuario" pref="500" max="32767" attributes="0"/>
-                                          <Component id="txt_Contrasena" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="lbl_Usuario" min="-2" pref="102" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                       </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lbl_Contrasena" min="-2" pref="114" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="txt_Usuario" min="-2" pref="500" max="-2" attributes="0"/>
+                                      <Component id="txt_Contraseña" alignment="0" min="-2" pref="500" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -98,10 +107,13 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lbl_Contrasena" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
-                      <Component id="txt_Contrasena" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txt_Contraseña" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                  <Component id="btn_IniciarSesion" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btn_IniciarSesion" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="lbl_Existe" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace pref="101" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -117,18 +129,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_Usuario">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="0"/>
-            </Property>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder/>
-              </Border>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txt_Contrasena">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -185,6 +185,9 @@
             </Property>
             <Property name="borderPainted" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_IniciarSesionActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="diseno">
           <Properties>
@@ -192,6 +195,10 @@
               <Image iconType="3" name="/uam/mx/interfaces/im&#xe1;genes/diseno.png"/>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbl_Existe">
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="txt_Contrase&#xf1;a">
         </Component>
       </SubComponents>
     </Container>

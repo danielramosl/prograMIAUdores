@@ -4,17 +4,32 @@
  */
 package uam.mx.interfaces;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import uam.mx.clases.Cine;
+import uam.mx.clases.Cliente;
+import uam.mx.clases.Empleado;
+import uam.mx.clases.Usuario;
+
 /**
  *
  * @author HP
  */
 public class InicioSesión extends javax.swing.JFrame {
-    String s = "Gatitos miau miau";
+    public static Cine cine = null;
+    public static Usuario usuarioActual;
     /**
      * Creates new form InicioSesión
+     * @throws java.io.IOException
      */
-    public InicioSesión() {
+    public InicioSesión() throws IOException {
         initComponents();
+        if(cine == null) {
+            cine = new Cine();
+        } else {
+            lbl_Existe.setText("Regresamos al inicio");
+        }
     }
 
     /**
@@ -30,12 +45,13 @@ public class InicioSesión extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lbl_Titulo = new javax.swing.JLabel();
         txt_Usuario = new javax.swing.JTextField();
-        txt_Contrasena = new javax.swing.JTextField();
         lbl_Contrasena = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
         lbl_Usuario = new javax.swing.JLabel();
         btn_IniciarSesion = new javax.swing.JButton();
         diseno = new javax.swing.JLabel();
+        lbl_Existe = new javax.swing.JLabel();
+        txt_Contraseña = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,9 +63,6 @@ public class InicioSesión extends javax.swing.JFrame {
 
         txt_Usuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_Usuario.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-
-        txt_Contrasena.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txt_Contrasena.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         lbl_Contrasena.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_Contrasena.setText("Contraseña:");
@@ -65,6 +78,11 @@ public class InicioSesión extends javax.swing.JFrame {
         btn_IniciarSesion.setText("Iniciar sesión");
         btn_IniciarSesion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_IniciarSesion.setBorderPainted(false);
+        btn_IniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_IniciarSesionActionPerformed(evt);
+            }
+        });
 
         diseno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imágenes/diseno.png"))); // NOI18N
 
@@ -80,16 +98,22 @@ public class InicioSesión extends javax.swing.JFrame {
                         .addComponent(logo))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(132, 132, 132)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_Contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btn_IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(lbl_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(22, 22, 22)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txt_Usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-                                        .addComponent(txt_Contrasena))))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lbl_Existe)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lbl_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(22, 22, 22))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lbl_Contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_Contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(157, 157, 157)
                         .addComponent(lbl_Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -110,9 +134,11 @@ public class InicioSesión extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_Contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_Contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_Contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(62, 62, 62)
-                .addComponent(btn_IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_IniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_Existe))
                 .addContainerGap(101, Short.MAX_VALUE))
         );
 
@@ -131,6 +157,31 @@ public class InicioSesión extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_IniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_IniciarSesionActionPerformed
+        // TODO add your handling code here:
+        String usuario = txt_Usuario.getText();
+        String contraseña = new String(txt_Contraseña.getPassword());
+        Usuario u = cine.buscarUsuario(usuario, contraseña);
+        if(u != null) {
+            usuarioActual = u;
+            Empleado e = cine.buscarEmpleado(u);
+            if(e != null) {
+                if(e.getTipoEmpleado() == 0) {
+                    this.dispose();
+                    InicioAdministrador inicioAdministrador = new InicioAdministrador();
+                    inicioAdministrador.setVisible(true);
+                }
+            } else {
+                Cliente c = cine.buscarCliente(u);
+                this.dispose();
+                InicioCliente inicioCliente = new InicioCliente();
+                inicioCliente.setVisible(true);
+            }
+        } else {
+            lbl_Existe.setText("El usuario o la contraseña son incorrectos.");
+        }
+    }//GEN-LAST:event_btn_IniciarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,7 +213,11 @@ public class InicioSesión extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InicioSesión().setVisible(true);
+                try {
+                    new InicioSesión().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(InicioSesión.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -173,10 +228,11 @@ public class InicioSesión extends javax.swing.JFrame {
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_Contrasena;
+    private javax.swing.JLabel lbl_Existe;
     private javax.swing.JLabel lbl_Titulo;
     private javax.swing.JLabel lbl_Usuario;
     private javax.swing.JLabel logo;
-    private javax.swing.JTextField txt_Contrasena;
+    private javax.swing.JPasswordField txt_Contraseña;
     private javax.swing.JTextField txt_Usuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,13 @@
  */
 package uam.mx.interfaces;
 
+import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import uam.mx.clases.Cliente;
+import uam.mx.clases.Usuario;
+
 /**
  *
  * @author Laura
@@ -15,6 +22,14 @@ public class InicioCliente extends javax.swing.JFrame {
      */
     public InicioCliente() {
         initComponents();
+        Usuario u = InicioSesión.usuarioActual;
+        Cliente c = InicioSesión.cine.buscarCliente(u);
+        lbl_usuario.setText(u.getUsuario());
+        lbl_totalPuntos.setText(Integer.toString(c.getPuntos()));
+        txt_Nombre.setText(c.getNombre());
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        txt_FechaNacimiento.setText(c.getFechaNacimiento().format(dtf));
+        txt_Correo.setText(c.getCorreo());
     }
 
     /**
@@ -30,7 +45,7 @@ public class InicioCliente extends javax.swing.JFrame {
         loguito = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         lbl_Usuario = new javax.swing.JLabel();
-        lbl_IDCliente = new javax.swing.JLabel();
+        lbl_usuario = new javax.swing.JLabel();
         lbl_Puntos = new javax.swing.JLabel();
         lbl_totalPuntos = new javax.swing.JLabel();
         lbl_Nombre = new javax.swing.JLabel();
@@ -57,8 +72,8 @@ public class InicioCliente extends javax.swing.JFrame {
         lbl_Usuario.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         lbl_Usuario.setText("Cliente");
 
-        lbl_IDCliente.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
-        lbl_IDCliente.setText("id_cliente");
+        lbl_usuario.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        lbl_usuario.setText("usuario");
 
         lbl_Puntos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         lbl_Puntos.setText("Puntos:");
@@ -123,6 +138,11 @@ public class InicioCliente extends javax.swing.JFrame {
         btn_CerrarSesion.setText("Cerrar sesión");
         btn_CerrarSesion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_CerrarSesion.setBorderPainted(false);
+        btn_CerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CerrarSesionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -143,7 +163,7 @@ public class InicioCliente extends javax.swing.JFrame {
                                     .addComponent(lbl_Correo, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lbl_Contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lbl_NuevaContrasena)
-                                    .addComponent(lbl_IDCliente))
+                                    .addComponent(lbl_usuario))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txt_Correo, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -192,7 +212,7 @@ public class InicioCliente extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_IDCliente)
+                    .addComponent(lbl_usuario)
                     .addComponent(lbl_totalPuntos)
                     .addComponent(lbl_Puntos))
                 .addGap(50, 50, 50)
@@ -240,6 +260,19 @@ public class InicioCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarSesionActionPerformed
+        try {
+            // TODO add your handling code here:
+            InicioSesión.usuarioActual = null;
+            this.dispose();
+            InicioSesión inicioSesión = new InicioSesión();
+            inicioSesión.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(InicioCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btn_CerrarSesionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -285,12 +318,12 @@ public class InicioCliente extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_Contrasena;
     private javax.swing.JLabel lbl_Correo;
     private javax.swing.JLabel lbl_FechaNacimiento;
-    private javax.swing.JLabel lbl_IDCliente;
     private javax.swing.JLabel lbl_Nombre;
     private javax.swing.JLabel lbl_NuevaContrasena;
     private javax.swing.JLabel lbl_Puntos;
     private javax.swing.JLabel lbl_Usuario;
     private javax.swing.JLabel lbl_totalPuntos;
+    private javax.swing.JLabel lbl_usuario;
     private javax.swing.JLabel loguito;
     private javax.swing.JTextField txt_Contrasena;
     private javax.swing.JTextField txt_Correo;

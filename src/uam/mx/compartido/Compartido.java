@@ -2,12 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package uam.mx.interfaces.clases;
+package uam.mx.compartido;
+
+import uam.mx.clases.Cine;
+import uam.mx.clases.Usuario;
 
 /**
  *
- * @author HP
+ * @author prograMIAUdores
  */
-public class Película {
-    
+public class Compartido {
+    public static Cine cine;
+    public static Usuario usuarioActual;
 }
