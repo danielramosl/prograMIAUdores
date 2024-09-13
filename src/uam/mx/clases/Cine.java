@@ -5,8 +5,10 @@
 package uam.mx.clases;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -128,5 +130,27 @@ public class Cine {
             }
         }
         return null;
+    }
+    
+    public int buscarUsuarioID(Usuario u) {
+        for(int i = 0; i < listaUsuarios.size(); ++i) {
+            if(listaUsuarios.get(i).getId() == u.getId()) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+    public void actualizarUsuario(int i, Usuario u) throws IOException {
+        listaUsuarios.set(i, u);
+        FileWriter fw = new FileWriter("src/uam/mx/datos/usuarios.dat");
+        BufferedWriter bw = new BufferedWriter(fw);
+        String nueva = "";
+        for(Usuario us : listaUsuarios) {
+            nueva += us.toString();
+        }
+        bw.write(nueva);
+        bw.close();
+        fw.close();
     }
 }

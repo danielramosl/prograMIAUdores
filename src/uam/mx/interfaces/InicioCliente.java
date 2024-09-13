@@ -4,12 +4,18 @@
  */
 package uam.mx.interfaces;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.text.DefaultCaret;
 import uam.mx.clases.Cliente;
 import uam.mx.clases.Usuario;
+
+class BlankCaret extends DefaultCaret { @Override public void paint(Graphics g) {/* Paint no caret. */}}
 
 /**
  *
@@ -30,6 +36,19 @@ public class InicioCliente extends javax.swing.JFrame {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         txt_FechaNacimiento.setText(c.getFechaNacimiento().format(dtf));
         txt_Correo.setText(c.getCorreo());
+        txt_Contraseña.setText(u.getContraseña());
+        txt_Nombre.setEditable(false);
+        txt_Nombre.setCaretColor(Color.white);
+        txt_FechaNacimiento.setEditable(false);
+        txt_FechaNacimiento.setCaretColor(Color.white);
+        txt_Correo.setEditable(false);
+        txt_Correo.setCaretColor(Color.white);
+        txt_Contraseña.setEditable(false);
+        txt_Contraseña.setCaretColor(Color.white);
+        lbl_NuevaContrasena.setVisible(false);
+        txt_NuevaContrasena.setVisible(false);
+        btn_Guardar.setVisible(false);
+        btn_Cancelar.setVisible(false);
     }
 
     /**
@@ -55,13 +74,14 @@ public class InicioCliente extends javax.swing.JFrame {
         txt_FechaNacimiento = new javax.swing.JTextField();
         txt_Nombre = new javax.swing.JTextField();
         txt_Correo = new javax.swing.JTextField();
-        txt_Contrasena = new javax.swing.JTextField();
+        txt_Contraseña = new javax.swing.JTextField();
         btn_Cancelar = new javax.swing.JButton();
         btn_Guardar = new javax.swing.JButton();
         lbl_NuevaContrasena = new javax.swing.JLabel();
         txt_NuevaContrasena = new javax.swing.JTextField();
         btn_ModificarContrasena = new javax.swing.JButton();
         btn_CerrarSesion = new javax.swing.JButton();
+        lbl_Mensaje = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,8 +122,8 @@ public class InicioCliente extends javax.swing.JFrame {
         txt_Correo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_Correo.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        txt_Contrasena.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txt_Contrasena.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        txt_Contraseña.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txt_Contraseña.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         btn_Cancelar.setBackground(new java.awt.Color(102, 102, 102));
         btn_Cancelar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -111,6 +131,11 @@ public class InicioCliente extends javax.swing.JFrame {
         btn_Cancelar.setText("Cancelar");
         btn_Cancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_Cancelar.setBorderPainted(false);
+        btn_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CancelarActionPerformed(evt);
+            }
+        });
 
         btn_Guardar.setBackground(new java.awt.Color(57, 105, 138));
         btn_Guardar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -118,6 +143,11 @@ public class InicioCliente extends javax.swing.JFrame {
         btn_Guardar.setText("Guardar");
         btn_Guardar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_Guardar.setBorderPainted(false);
+        btn_Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_GuardarActionPerformed(evt);
+            }
+        });
 
         lbl_NuevaContrasena.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_NuevaContrasena.setText("Nueva contraseña:");
@@ -131,6 +161,11 @@ public class InicioCliente extends javax.swing.JFrame {
         btn_ModificarContrasena.setText("Modificar contraseña");
         btn_ModificarContrasena.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_ModificarContrasena.setBorderPainted(false);
+        btn_ModificarContrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ModificarContrasenaActionPerformed(evt);
+            }
+        });
 
         btn_CerrarSesion.setBackground(new java.awt.Color(102, 102, 102));
         btn_CerrarSesion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -154,9 +189,9 @@ public class InicioCliente extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jSeparator1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(95, 95, 95)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(95, 95, 95)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbl_FechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lbl_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -177,9 +212,10 @@ public class InicioCliente extends javax.swing.JFrame {
                                     .addComponent(txt_NuevaContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(btn_ModificarContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txt_Contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
+                                        .addComponent(txt_Contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lbl_Mensaje)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btn_Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -230,7 +266,7 @@ public class InicioCliente extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_Contrasena)
-                    .addComponent(txt_Contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_Contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_ModificarContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
@@ -240,7 +276,8 @@ public class InicioCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_Mensaje))
                 .addGap(34, 34, 34)
                 .addComponent(btn_CerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
@@ -272,6 +309,45 @@ public class InicioCliente extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btn_CerrarSesionActionPerformed
+
+    private void btn_ModificarContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarContrasenaActionPerformed
+        // TODO add your handling code here:
+        lbl_NuevaContrasena.setVisible(true);
+        txt_NuevaContrasena.setVisible(true);
+        btn_Guardar.setVisible(true);
+        btn_Cancelar.setVisible(true);
+        lbl_Mensaje.setText("");
+    }//GEN-LAST:event_btn_ModificarContrasenaActionPerformed
+
+    private void btn_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CancelarActionPerformed
+        // TODO add your handling code here:
+        lbl_NuevaContrasena.setVisible(false);
+        txt_NuevaContrasena.setVisible(false);
+        btn_Guardar.setVisible(false);
+        btn_Cancelar.setVisible(false);
+    }//GEN-LAST:event_btn_CancelarActionPerformed
+
+    private void btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GuardarActionPerformed
+        // TODO add your handling code here:
+        String nueva = txt_NuevaContrasena.getText();
+        if(nueva.equals(InicioSesión.usuarioActual.getContraseña())) {
+            lbl_Mensaje.setText("La contraseña no puede ser la misma que la anterior.");
+        } else {
+            lbl_Mensaje.setText("La contraseña se ha guardado correctamente.");
+            InicioSesión.usuarioActual.setContraseña(nueva);
+            int i = InicioSesión.cine.buscarUsuarioID(InicioSesión.usuarioActual);
+            try {
+                InicioSesión.cine.actualizarUsuario(i, InicioSesión.usuarioActual);
+            } catch (IOException ex) {
+                Logger.getLogger(InicioCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            lbl_NuevaContrasena.setVisible(false);
+            txt_NuevaContrasena.setVisible(false);
+            btn_Guardar.setVisible(false);
+            btn_Cancelar.setVisible(false);
+            txt_Contraseña.setText(InicioSesión.usuarioActual.getContraseña());
+        }
+    }//GEN-LAST:event_btn_GuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,6 +394,7 @@ public class InicioCliente extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_Contrasena;
     private javax.swing.JLabel lbl_Correo;
     private javax.swing.JLabel lbl_FechaNacimiento;
+    private javax.swing.JLabel lbl_Mensaje;
     private javax.swing.JLabel lbl_Nombre;
     private javax.swing.JLabel lbl_NuevaContrasena;
     private javax.swing.JLabel lbl_Puntos;
@@ -325,7 +402,7 @@ public class InicioCliente extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_totalPuntos;
     private javax.swing.JLabel lbl_usuario;
     private javax.swing.JLabel loguito;
-    private javax.swing.JTextField txt_Contrasena;
+    private javax.swing.JTextField txt_Contraseña;
     private javax.swing.JTextField txt_Correo;
     private javax.swing.JTextField txt_FechaNacimiento;
     private javax.swing.JTextField txt_Nombre;

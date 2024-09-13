@@ -4,6 +4,10 @@
  */
 package uam.mx.interfaces;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Laura
@@ -54,9 +58,14 @@ public class InicioAdministrador extends javax.swing.JFrame {
         btn_GestionarUsuarios.setBackground(new java.awt.Color(57, 105, 138));
         btn_GestionarUsuarios.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         btn_GestionarUsuarios.setForeground(new java.awt.Color(255, 255, 255));
-        btn_GestionarUsuarios.setText("Gestionar usuarios");
+        btn_GestionarUsuarios.setText("Gestionar empleados");
         btn_GestionarUsuarios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_GestionarUsuarios.setBorderPainted(false);
+        btn_GestionarUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_GestionarUsuariosActionPerformed(evt);
+            }
+        });
 
         btn_GestionarCartelera.setBackground(new java.awt.Color(57, 105, 138));
         btn_GestionarCartelera.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -160,6 +169,13 @@ public class InicioAdministrador extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_GestionarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GestionarUsuariosActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        GestionarEmpleados ge = new GestionarEmpleados();
+        ge.setVisible(true);
+    }//GEN-LAST:event_btn_GestionarUsuariosActionPerformed
 
     /**
      * @param args the command line arguments
