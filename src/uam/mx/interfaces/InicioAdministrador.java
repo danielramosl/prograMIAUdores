@@ -51,14 +51,14 @@ public class InicioAdministrador extends javax.swing.JFrame {
         lbl_Inicio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         lbl_Inicio.setText("INICIO");
 
-        btn_GestionarUsuarios.setBackground(new java.awt.Color(215, 96, 96));
+        btn_GestionarUsuarios.setBackground(new java.awt.Color(57, 105, 138));
         btn_GestionarUsuarios.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         btn_GestionarUsuarios.setForeground(new java.awt.Color(255, 255, 255));
         btn_GestionarUsuarios.setText("Gestionar usuarios");
         btn_GestionarUsuarios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_GestionarUsuarios.setBorderPainted(false);
 
-        btn_GestionarCartelera.setBackground(new java.awt.Color(215, 96, 96));
+        btn_GestionarCartelera.setBackground(new java.awt.Color(57, 105, 138));
         btn_GestionarCartelera.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         btn_GestionarCartelera.setForeground(new java.awt.Color(255, 255, 255));
         btn_GestionarCartelera.setText("Gestionar cartelera");

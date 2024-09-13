@@ -112,7 +112,7 @@ public class InicioCliente extends javax.swing.JFrame {
         btn_Cancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_Cancelar.setBorderPainted(false);
 
-        btn_Guardar.setBackground(new java.awt.Color(96, 143, 215));
+        btn_Guardar.setBackground(new java.awt.Color(57, 105, 138));
         btn_Guardar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         btn_Guardar.setForeground(new java.awt.Color(255, 255, 255));
         btn_Guardar.setText("Guardar");
@@ -125,7 +125,7 @@ public class InicioCliente extends javax.swing.JFrame {
         txt_NuevaContrasena.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_NuevaContrasena.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        btn_ModificarContrasena.setBackground(new java.awt.Color(96, 143, 215));
+        btn_ModificarContrasena.setBackground(new java.awt.Color(57, 105, 138));
         btn_ModificarContrasena.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         btn_ModificarContrasena.setForeground(new java.awt.Color(255, 255, 255));
         btn_ModificarContrasena.setText("Modificar contraseña");
