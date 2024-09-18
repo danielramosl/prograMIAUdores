@@ -10,11 +10,11 @@ import java.util.ArrayList;
  *
  * @author prograMIAUdores
  */
-public class CajaBoleto {
-    private ArrayList<VentaBoleto> listaVentas;
+public class Caja {
+    private ArrayList<Object> listaVentas;
     private float total;
 
-    public CajaBoleto(ArrayList<VentaBoleto> listaVentas, float total) {
+    public Caja(ArrayList<Object> listaVentas, float total) {
         this.listaVentas = listaVentas;
         this.total = total;
     }

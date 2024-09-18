@@ -73,6 +73,11 @@ public class InicioAdministrador extends javax.swing.JFrame {
         btn_GestionarCartelera.setText("Gestionar cartelera");
         btn_GestionarCartelera.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_GestionarCartelera.setBorderPainted(false);
+        btn_GestionarCartelera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_GestionarCarteleraActionPerformed(evt);
+            }
+        });
 
         btn_CerrarSesion.setBackground(new java.awt.Color(102, 102, 102));
         btn_CerrarSesion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -176,6 +181,13 @@ public class InicioAdministrador extends javax.swing.JFrame {
         GestionarEmpleados ge = new GestionarEmpleados();
         ge.setVisible(true);
     }//GEN-LAST:event_btn_GestionarUsuariosActionPerformed
+
+    private void btn_GestionarCarteleraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GestionarCarteleraActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        GestionarCartelera gc = new GestionarCartelera();
+        gc.setVisible(true);
+    }//GEN-LAST:event_btn_GestionarCarteleraActionPerformed
 
     /**
      * @param args the command line arguments

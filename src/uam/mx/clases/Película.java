@@ -22,5 +22,25 @@ public class Película {
         this.descripción = descripción;
         this.duración = duración;
         this.clasificación = clasificación;
-    }    
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDescripción() {
+        return descripción;
+    }
+
+    public int getDuración() {
+        return duración;
+    }
+
+    public String getClasificación() {
+        return clasificación;
+    }
 }

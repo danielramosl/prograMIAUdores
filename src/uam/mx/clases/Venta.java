@@ -4,22 +4,27 @@
  */
 package uam.mx.clases;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
  *
  * @author prograMIAUdores
  */
-public class VentaComida {
+public class Venta {
     private int id;
-    private ArrayList<LineaComida> lineaVenta;
-    private LocalDateTime fecha;
+    private int id_caja;
+    private ArrayList<Object> lineaVenta;
+    private LocalTime fecha;
     private float total;
+    private Boolean tipoPago;
 
-    public VentaComida(int id, ArrayList<LineaComida> lineaVenta, LocalDateTime fecha) {
+    public Venta(int id, int id_caja, ArrayList<Object> lineaVenta, LocalTime fecha, float total, Boolean tipoPago) {
         this.id = id;
+        this.id_caja = id_caja;
         this.lineaVenta = lineaVenta;
         this.fecha = fecha;
+        this.total = total;
+        this.tipoPago = tipoPago;
     }
 }
