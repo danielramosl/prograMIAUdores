@@ -4,20 +4,50 @@
  */
 package uam.mx.interfaces;
 
+import java.awt.Color;
 import java.awt.Dialog;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import uam.mx.clases.Empleado;
 
 /**
  *
  * @author Laura
  */
-public class GestionarEmpleados extends javax.swing.JFrame {
+public final class GestionarEmpleados extends javax.swing.JFrame {
 
     /**
      * Creates new form GestionarEmpleado
      */
     public GestionarEmpleados() {
         initComponents();
+        LlenarEmpleados();
+        txt_Nombre.setEditable(false);
+        txt_Nombre.setCaretColor(Color.white);
+        LlenarRoles();
+        cmb_Roles.setEnabled(false);
+        rbtn_VentaBoletos.setEnabled(false);
+        rbtn_VentaComida.setEnabled(false);
+        rbtn_RegistrarCliente.setEnabled(false);
+    }
+    
+    public void LlenarEmpleados() {
+        cmb_Empleado.removeAllItems();
+        ArrayList<Empleado> al = InicioSesión.cine.getSistemaUsuarios().getListaEmpleados();
+        cmb_Empleado.addItem("-Seleccionar-");
+        for(Empleado e : al) {
+            if(e.getTipoEmpleado() == 0) {
+                continue;
+            }
+            cmb_Empleado.addItem(InicioSesión.cine.getSistemaUsuarios().buscarUsuarioID(e.getId_usuario()).getUsuario());
+        }
+    }
+    
+    public void LlenarRoles() {
+        cmb_Roles.removeAllItems();
+        cmb_Roles.addItem("-Seleccionar-");
+        cmb_Roles.addItem("Empleado de Taquilla");
+        cmb_Roles.addItem("Empleado de Dulcería");
     }
 
     /**
@@ -129,6 +159,11 @@ public class GestionarEmpleados extends javax.swing.JFrame {
         cmb_Empleado.setToolTipText("");
         cmb_Empleado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cmb_Empleado.setFocusable(false);
+        cmb_Empleado.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmb_EmpleadoItemStateChanged(evt);
+            }
+        });
 
         loguito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imágenes/loguito.png"))); // NOI18N
 
@@ -172,7 +207,7 @@ public class GestionarEmpleados extends javax.swing.JFrame {
         txt_Nombre.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         lbl_IdEmpleado.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        lbl_IdEmpleado.setText("id_empleado");
+        lbl_IdEmpleado.setText("user_empleado");
 
         lbl_Rol.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_Rol.setText("Rol:");
@@ -319,6 +354,33 @@ public class GestionarEmpleados extends javax.swing.JFrame {
         dlg_EliminarEmpleado.setLocationRelativeTo(this);
         dlg_EliminarEmpleado.setVisible(true);
     }//GEN-LAST:event_btn_EliminarEmpleadoActionPerformed
+
+    private void cmb_EmpleadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_EmpleadoItemStateChanged
+        // TODO add your handling code here:
+        if(cmb_Empleado.getSelectedIndex() == 0) {
+            lbl_IdEmpleado.setText("user_empleado");
+            txt_Nombre.setText("");
+            cmb_Roles.removeAllItems();
+            rbtn_VentaBoletos.setSelected(false);
+            rbtn_VentaComida.setSelected(false);
+            rbtn_RegistrarCliente.setSelected(false);
+        } else if(cmb_Empleado.getSelectedIndex() > 0) {
+            LlenarRoles();
+            Empleado e = InicioSesión.cine.getSistemaUsuarios().getListaEmpleados().get(cmb_Empleado.getSelectedIndex());
+            lbl_IdEmpleado.setText(InicioSesión.cine.getSistemaUsuarios().buscarUsuarioID(e.getId_usuario()).getUsuario());
+            txt_Nombre.setText(e.getNombre());
+            cmb_Roles.setSelectedIndex(e.getTipoEmpleado());
+            if(e.getTipoEmpleado() == 1) {
+                rbtn_VentaBoletos.setSelected(true);
+                rbtn_VentaComida.setSelected(false);
+                rbtn_RegistrarCliente.setSelected(true);
+            } else if(e.getTipoEmpleado() == 2) {
+                rbtn_VentaBoletos.setSelected(false);
+                rbtn_VentaComida.setSelected(true);
+                rbtn_RegistrarCliente.setSelected(false);
+            }
+        }
+    }//GEN-LAST:event_cmb_EmpleadoItemStateChanged
 
     /**
      * @param args the command line arguments

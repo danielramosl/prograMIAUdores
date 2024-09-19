@@ -29,7 +29,7 @@ public class InicioCliente extends javax.swing.JFrame {
     public InicioCliente() {
         initComponents();
         Usuario u = InicioSesión.usuarioActual;
-        Cliente c = InicioSesión.cine.buscarCliente(u);
+        Cliente c = InicioSesión.cine.getSistemaUsuarios().buscarCliente(u);
         lbl_usuario.setText(u.getUsuario());
         lbl_totalPuntos.setText(Integer.toString(c.getPuntos()));
         txt_Nombre.setText(c.getNombre());
@@ -335,9 +335,9 @@ public class InicioCliente extends javax.swing.JFrame {
         } else {
             lbl_Mensaje.setText("La contraseña se ha guardado correctamente.");
             InicioSesión.usuarioActual.setContraseña(nueva);
-            int i = InicioSesión.cine.buscarUsuarioID(InicioSesión.usuarioActual);
+            int i = InicioSesión.cine.getSistemaUsuarios().buscarUsuarioID(InicioSesión.usuarioActual);
             try {
-                InicioSesión.cine.actualizarUsuario(i, InicioSesión.usuarioActual);
+                InicioSesión.cine.getSistemaUsuarios().actualizarUsuario(i, InicioSesión.usuarioActual);
             } catch (IOException ex) {
                 Logger.getLogger(InicioCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -378,7 +378,7 @@ public class InicioCliente extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            public void run(){
                 new InicioCliente().setVisible(true);
             }
         });
