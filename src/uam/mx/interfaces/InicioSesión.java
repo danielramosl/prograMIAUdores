@@ -165,10 +165,10 @@ public class InicioSesión extends javax.swing.JFrame {
         // TODO add your handling code here:
         String usuario = txt_Usuario.getText();
         String contraseña = new String(txt_Contraseña.getPassword());
-        Usuario u = cine.buscarUsuario(usuario, contraseña);
+        Usuario u = cine.getSistemaUsuarios().buscarUsuario(usuario, contraseña);
         if(u != null) {
             usuarioActual = u;
-            Empleado e = cine.buscarEmpleado(u);
+            Empleado e = cine.getSistemaUsuarios().buscarEmpleado(u);
             if(e != null) {
                 if(e.getTipoEmpleado() == 0) {
                     this.dispose();
@@ -176,7 +176,7 @@ public class InicioSesión extends javax.swing.JFrame {
                     inicioAdministrador.setVisible(true);
                 }
             } else {
-                Cliente c = cine.buscarCliente(u);
+                Cliente c = cine.getSistemaUsuarios().buscarCliente(u);
                 this.dispose();
                 InicioCliente inicioCliente = new InicioCliente();
                 inicioCliente.setVisible(true);
