@@ -27,26 +27,26 @@ public class InicioVentaBoletos extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btn_Cancelar = new javax.swing.JButton();
+        btn_Regresar = new javax.swing.JButton();
         loguito = new javax.swing.JLabel();
         lbl_Usuario = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         lbl_Titulo = new javax.swing.JLabel();
-        btn_Agregar = new javax.swing.JButton();
-        btn_Agregar1 = new javax.swing.JButton();
-        btn_Agregar2 = new javax.swing.JButton();
-        loguito1 = new javax.swing.JLabel();
+        btn_NuevaVenta = new javax.swing.JButton();
+        btn_Cartelera = new javax.swing.JButton();
+        btn_RegistrarCliente = new javax.swing.JButton();
+        LOGOTE = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        btn_Cancelar.setBackground(new java.awt.Color(102, 102, 102));
-        btn_Cancelar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btn_Cancelar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Cancelar.setText("Regresar");
-        btn_Cancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_Cancelar.setBorderPainted(false);
+        btn_Regresar.setBackground(new java.awt.Color(102, 102, 102));
+        btn_Regresar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btn_Regresar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Regresar.setText("Regresar");
+        btn_Regresar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_Regresar.setBorderPainted(false);
 
         loguito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imágenes/loguito.png"))); // NOI18N
 
@@ -56,28 +56,28 @@ public class InicioVentaBoletos extends javax.swing.JFrame {
         lbl_Titulo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         lbl_Titulo.setText("VENTA DE BOLETOS");
 
-        btn_Agregar.setBackground(new java.awt.Color(57, 105, 138));
-        btn_Agregar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btn_Agregar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Agregar.setText("Nueva venta");
-        btn_Agregar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_Agregar.setBorderPainted(false);
+        btn_NuevaVenta.setBackground(new java.awt.Color(57, 105, 138));
+        btn_NuevaVenta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btn_NuevaVenta.setForeground(new java.awt.Color(255, 255, 255));
+        btn_NuevaVenta.setText("Nueva venta");
+        btn_NuevaVenta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_NuevaVenta.setBorderPainted(false);
 
-        btn_Agregar1.setBackground(new java.awt.Color(57, 105, 138));
-        btn_Agregar1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btn_Agregar1.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Agregar1.setText("Cartelera");
-        btn_Agregar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_Agregar1.setBorderPainted(false);
+        btn_Cartelera.setBackground(new java.awt.Color(57, 105, 138));
+        btn_Cartelera.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btn_Cartelera.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Cartelera.setText("Cartelera");
+        btn_Cartelera.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_Cartelera.setBorderPainted(false);
 
-        btn_Agregar2.setBackground(new java.awt.Color(57, 105, 138));
-        btn_Agregar2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btn_Agregar2.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Agregar2.setText("Registrar cliente");
-        btn_Agregar2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_Agregar2.setBorderPainted(false);
+        btn_RegistrarCliente.setBackground(new java.awt.Color(57, 105, 138));
+        btn_RegistrarCliente.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btn_RegistrarCliente.setForeground(new java.awt.Color(255, 255, 255));
+        btn_RegistrarCliente.setText("Registrar cliente");
+        btn_RegistrarCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_RegistrarCliente.setBorderPainted(false);
 
-        loguito1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imágenes/boletos.png"))); // NOI18N
+        LOGOTE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imágenes/boletos.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -95,16 +95,16 @@ public class InicioVentaBoletos extends javax.swing.JFrame {
                         .addGap(15, 15, 15))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_Regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(95, 95, 95))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(134, 134, 134)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_Agregar1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Agregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_Cartelera, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_NuevaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_RegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(loguito1)
+                .addComponent(LOGOTE)
                 .addGap(139, 139, 139))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(332, Short.MAX_VALUE)
@@ -129,14 +129,14 @@ public class InicioVentaBoletos extends javax.swing.JFrame {
                 .addGap(77, 77, 77)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btn_Agregar1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_Cartelera, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(63, 63, 63)
-                        .addComponent(btn_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_NuevaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_Agregar2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(loguito1))
+                        .addComponent(btn_RegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(LOGOTE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
-                .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_Regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
 
@@ -192,15 +192,15 @@ public class InicioVentaBoletos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_Agregar;
-    private javax.swing.JButton btn_Agregar1;
-    private javax.swing.JButton btn_Agregar2;
-    private javax.swing.JButton btn_Cancelar;
+    private javax.swing.JLabel LOGOTE;
+    private javax.swing.JButton btn_Cartelera;
+    private javax.swing.JButton btn_NuevaVenta;
+    private javax.swing.JButton btn_RegistrarCliente;
+    private javax.swing.JButton btn_Regresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbl_Titulo;
     private javax.swing.JLabel lbl_Usuario;
     private javax.swing.JLabel loguito;
-    private javax.swing.JLabel loguito1;
     // End of variables declaration//GEN-END:variables
 }

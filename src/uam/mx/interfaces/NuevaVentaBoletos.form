@@ -2,22 +2,22 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Container class="javax.swing.JDialog" name="jDialog1">
+    <Container class="javax.swing.JDialog" name="dlg_PagoTarjeta">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
+              <Component id="jp_PagoTarjeta" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
+              <Component id="jp_PagoTarjeta" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanel3">
+        <Container class="javax.swing.JPanel" name="jp_PagoTarjeta">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -29,36 +29,34 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="lbl_Titulo1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_PagoTarjeta" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace pref="49" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="btn_Cancelar1" min="-2" pref="165" max="-2" attributes="0"/>
+                              <Component id="btn_Cancelar" min="-2" pref="165" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btn_ModificarEmpleado1" min="-2" pref="165" max="-2" attributes="0"/>
+                              <Component id="btn_Continuar" min="-2" pref="165" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="lbl_Asiento9" max="32767" attributes="0"/>
-                                      <Component id="lbl_Asiento11" max="32767" attributes="0"/>
+                                      <Component id="lbl_NumTarjeta" max="32767" attributes="0"/>
+                                      <Component id="lbl_NombreCompleto" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txt_Nombre3" max="32767" attributes="0"/>
-                                      <Component id="txt_Nombre4" max="32767" attributes="0"/>
+                                      <Component id="txt_NombreCompleto" max="32767" attributes="0"/>
+                                      <Component id="txt_NumTarjeta" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="lbl_SeleccionarPelicula1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lbl_Asiento10" alignment="0" pref="165" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="lbl_DatosTarjeta" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
-                                  <Component id="cmb_Funcion3" min="-2" pref="330" max="-2" attributes="0"/>
+                                  <Component id="lbl_TipoTarjeta" min="-2" pref="157" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                  <Component id="cmb_TipoTarjeta" min="-2" pref="330" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -70,28 +68,28 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="lbl_Titulo1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_PagoTarjeta" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbl_SeleccionarPelicula1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmb_Funcion3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_TipoTarjeta" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmb_TipoTarjeta" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="lbl_Asiento10" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_DatosTarjeta" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txt_Nombre3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbl_Asiento11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_NombreCompleto" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_NombreCompleto" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbl_Asiento9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txt_Nombre4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_NumTarjeta" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_NumTarjeta" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btn_Cancelar1" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-                          <Component id="btn_ModificarEmpleado1" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                          <Component id="btn_Cancelar" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                          <Component id="btn_Continuar" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="48" max="32767" attributes="0"/>
                   </Group>
@@ -99,7 +97,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="lbl_Titulo1">
+            <Component class="javax.swing.JLabel" name="lbl_PagoTarjeta">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI Semibold" size="24" style="0"/>
@@ -107,7 +105,7 @@
                 <Property name="text" type="java.lang.String" value="PAGO CON TARJETA"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txt_Nombre3">
+            <Component class="javax.swing.JTextField" name="txt_NombreCompleto">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="0"/>
@@ -119,7 +117,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbl_SeleccionarPelicula1">
+            <Component class="javax.swing.JLabel" name="lbl_TipoTarjeta">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="0"/>
@@ -127,7 +125,7 @@
                 <Property name="text" type="java.lang.String" value="Tipo de tarjeta:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="cmb_Funcion3">
+            <Component class="javax.swing.JComboBox" name="cmb_TipoTarjeta">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="f0" green="f0" id="Control" palette="2" red="f0" type="palette"/>
@@ -152,7 +150,7 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbl_Asiento9">
+            <Component class="javax.swing.JLabel" name="lbl_NumTarjeta">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="0"/>
@@ -160,7 +158,7 @@
                 <Property name="text" type="java.lang.String" value="N&#xfa;mero de la tarjeta:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbl_Asiento10">
+            <Component class="javax.swing.JLabel" name="lbl_DatosTarjeta">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="0"/>
@@ -168,7 +166,7 @@
                 <Property name="text" type="java.lang.String" value="Datos de la tarjeta:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbl_Asiento11">
+            <Component class="javax.swing.JLabel" name="lbl_NombreCompleto">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="0"/>
@@ -176,7 +174,7 @@
                 <Property name="text" type="java.lang.String" value="Nombre completo:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txt_Nombre4">
+            <Component class="javax.swing.JTextField" name="txt_NumTarjeta">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="0"/>
@@ -188,7 +186,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btn_ModificarEmpleado1">
+            <Component class="javax.swing.JButton" name="btn_Continuar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="8a" green="69" red="39" type="rgb"/>
@@ -208,7 +206,7 @@
                 <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btn_Cancelar1">
+            <Component class="javax.swing.JButton" name="btn_Cancelar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
@@ -255,17 +253,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jp_Principal" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jp_Principal" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="jp_Principal">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -293,21 +291,21 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="31" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                           <Group type="102" attributes="0">
-                                              <Component id="lbl_SeleccionarSala" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lbl_Cantidad" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jSpinner1" min="-2" pref="72" max="-2" attributes="0"/>
+                                              <Component id="sp_Cantidad" min="-2" pref="72" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="lbl_SeleccionarSala2" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lbl_Costo" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="lbl_SeleccionarSala1" min="-2" pref="105" max="-2" attributes="0"/>
+                                              <Component id="lbl_costoBoleto" min="-2" pref="105" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="lbl_SeleccionarSala5" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lbl_SubtotalT" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="lbl_SeleccionarSala4" max="32767" attributes="0"/>
+                                              <Component id="lbl_Subtotal" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="1" attributes="0">
@@ -316,27 +314,27 @@
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="cmb_Funcion1" min="-2" pref="340" max="-2" attributes="0"/>
+                                                  <Component id="cmb_Funcion" min="-2" pref="340" max="-2" attributes="0"/>
                                                   <Component id="cmb_Asiento" min="-2" pref="340" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <Component id="lbl_SeleccionarFormato1" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="lbl_listaAsientosSeleccionados" alignment="0" max="32767" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="lbl_SeleccionarPelicula2" min="-2" pref="165" max="-2" attributes="0"/>
-                                                  <Component id="lbl_SeleccionarPelicula" min="-2" pref="165" max="-2" attributes="0"/>
+                                                  <Component id="lbl_UsuarioCliente" min="-2" pref="165" max="-2" attributes="0"/>
+                                                  <Component id="lbl_NombreCliente" min="-2" pref="165" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="txt_Nombre2" alignment="0" min="-2" pref="338" max="-2" attributes="0"/>
-                                                  <Component id="txt_Nombre1" max="32767" attributes="0"/>
+                                                  <Component id="txt_NombreCliente" alignment="0" min="-2" pref="338" max="-2" attributes="0"/>
+                                                  <Component id="txt_UsuarioCliente" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Component id="lbl_Asiento4" min="-2" pref="165" max="-2" attributes="0"/>
+                                          <Component id="lbl_Descuento" min="-2" pref="165" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="cmb_Funcion2" min="-2" pref="340" max="-2" attributes="0"/>
+                                          <Component id="cmb_Descuento" min="-2" pref="340" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -344,23 +342,23 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="lbl_Asiento5" max="32767" attributes="0"/>
+                                          <Component id="lbl_Variables" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <EmptySpace pref="51" max="32767" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="1" attributes="0">
                                               <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="lbl_Asiento2" min="-2" pref="68" max="-2" attributes="0"/>
+                                                  <Component id="lbl_TotalT" min="-2" pref="68" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="lbl_SeleccionarSala3" min="-2" pref="90" max="-2" attributes="0"/>
+                                                  <Component id="lbl_Total" min="-2" pref="90" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="lbl_Asiento3" min="-2" pref="165" max="-2" attributes="0"/>
+                                                  <Component id="lbl_TipoPago" min="-2" pref="165" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="cmb_Funcion" min="-2" pref="340" max="-2" attributes="0"/>
+                                                  <Component id="cmb_TipoPago" min="-2" pref="340" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="lbl_Asiento1" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
+                                              <Component id="lbl_CambioPuntos" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -375,22 +373,15 @@
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  <Component id="jp_DatosFuncion" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="btn_Cancelar" min="-2" pref="164" max="-2" attributes="0"/>
+                  <Component id="btn_Regresar" min="-2" pref="164" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btn_Cancelar2" min="-2" pref="164" max="-2" attributes="0"/>
+                  <Component id="btn_CompletarVenta" min="-2" pref="164" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
-              </Group>
-              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                      <Component id="lbl_Horario" min="-2" pref="165" max="-2" attributes="0"/>
-                      <EmptySpace pref="662" max="32767" attributes="0"/>
-                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -413,24 +404,24 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="jPanel2" max="32767" attributes="0"/>
+                          <Component id="jp_DatosFuncion" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="lbl_Titulo" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" pref="21" max="32767" attributes="0"/>
+                          <EmptySpace type="unrelated" pref="15" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lbl_SeleccionarFuncion" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmb_Funcion1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmb_Funcion" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lbl_SeleccionarSala" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbl_SeleccionarSala2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbl_SeleccionarSala1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbl_SeleccionarSala4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbl_SeleccionarSala5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_Cantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="sp_Cantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_Costo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_costoBoleto" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_Subtotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_SubtotalT" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -438,58 +429,51 @@
                               <Component id="cmb_Asiento" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="lbl_SeleccionarFormato1" min="-2" pref="76" max="-2" attributes="0"/>
+                          <Component id="lbl_listaAsientosSeleccionados" min="-2" pref="76" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lbl_SeleccionarPelicula2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txt_Nombre1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_UsuarioCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_UsuarioCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txt_Nombre2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbl_SeleccionarPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_NombreCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_NombreCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="cmb_Funcion2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbl_Asiento4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmb_Descuento" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_Descuento" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lbl_Asiento2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbl_SeleccionarSala3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_TotalT" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_Total" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lbl_Asiento3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmb_Funcion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_TipoPago" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmb_TipoPago" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lbl_Asiento1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbl_Asiento5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_CambioPuntos" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbl_Variables" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btn_Cancelar" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-                      <Component id="btn_Cancelar2" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="btn_Regresar" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                      <Component id="btn_CompletarVenta" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-              </Group>
-              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="394" max="-2" attributes="0"/>
-                      <Component id="lbl_Horario" min="-2" pref="0" max="-2" attributes="0"/>
-                      <EmptySpace pref="346" max="32767" attributes="0"/>
-                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btn_Cancelar">
+        <Component class="javax.swing.JButton" name="btn_Regresar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>
@@ -526,20 +510,12 @@
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
         </Component>
-        <Component class="javax.swing.JLabel" name="lbl_SeleccionarFormato1">
+        <Component class="javax.swing.JLabel" name="lbl_listaAsientosSeleccionados">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="listaAsientosSeleccionados"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lbl_Horario">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Asiento:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cmb_Asiento">
@@ -566,7 +542,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Container class="javax.swing.JPanel" name="jPanel2">
+        <Container class="javax.swing.JPanel" name="jp_DatosFuncion">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="8a" green="69" red="39" type="rgb"/>
@@ -603,13 +579,13 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lbl_DuraciónPelícula" min="-2" pref="80" max="-2" attributes="0"/>
+                                      <Component id="lbl_SalaPelicula" min="-2" pref="80" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="lbl_DuraciónPelícula1" min="-2" pref="80" max="-2" attributes="0"/>
+                                      <Component id="lbl_HoraPelicula" min="-2" pref="80" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="lbl_DuraciónPelícula2" min="-2" pref="80" max="-2" attributes="0"/>
+                                      <Component id="lbl_CostoPelicula" min="-2" pref="80" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="lbl_ClasificacionPelicula1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbl_nombreCliente" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -617,7 +593,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lbl_ClasificacionPelicula2" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_listaAsientosSeleccionados2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -635,14 +611,14 @@
                       <Component id="lbl_ClasificacionPelicula" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbl_DuraciónPelícula" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbl_DuraciónPelícula1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbl_DuraciónPelícula2" alignment="3" max="32767" attributes="0"/>
+                          <Component id="lbl_SalaPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_HoraPelicula" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbl_CostoPelicula" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lbl_ClasificacionPelicula1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_nombreCliente" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lbl_ClasificacionPelicula2" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbl_listaAsientosSeleccionados2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -685,7 +661,7 @@
                 <Property name="text" type="java.lang.String" value="Clasificaci&#xf3;n"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbl_Duraci&#xf3;nPel&#xed;cula">
+            <Component class="javax.swing.JLabel" name="lbl_SalaPelicula">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="2"/>
@@ -696,7 +672,7 @@
                 <Property name="text" type="java.lang.String" value="Sala"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbl_Duraci&#xf3;nPel&#xed;cula1">
+            <Component class="javax.swing.JLabel" name="lbl_HoraPelicula">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="2"/>
@@ -707,7 +683,7 @@
                 <Property name="text" type="java.lang.String" value="Hora"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbl_Duraci&#xf3;nPel&#xed;cula2">
+            <Component class="javax.swing.JLabel" name="lbl_CostoPelicula">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="2"/>
@@ -718,7 +694,7 @@
                 <Property name="text" type="java.lang.String" value="Costo"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbl_ClasificacionPelicula1">
+            <Component class="javax.swing.JLabel" name="lbl_nombreCliente">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="2"/>
@@ -729,7 +705,7 @@
                 <Property name="text" type="java.lang.String" value="nombreCliente"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lbl_ClasificacionPelicula2">
+            <Component class="javax.swing.JLabel" name="lbl_listaAsientosSeleccionados2">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="12" style="2"/>
@@ -750,7 +726,7 @@
             <Property name="text" type="java.lang.String" value="DATOS DE LA VENTA"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbl_SeleccionarPelicula">
+        <Component class="javax.swing.JLabel" name="lbl_NombreCliente">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -758,7 +734,7 @@
             <Property name="text" type="java.lang.String" value="Nombre:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cmb_Funcion">
+        <Component class="javax.swing.JComboBox" name="cmb_TipoPago">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" id="Control" palette="2" red="f0" type="palette"/>
@@ -791,7 +767,7 @@
             <Property name="text" type="java.lang.String" value="Asiento(s):"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbl_SeleccionarSala">
+        <Component class="javax.swing.JLabel" name="lbl_Cantidad">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -807,7 +783,7 @@
             <Property name="text" type="java.lang.String" value="Seleccionar funci&#xf3;n:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_Nombre1">
+        <Component class="javax.swing.JTextField" name="txt_UsuarioCliente">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -819,7 +795,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbl_SeleccionarPelicula2">
+        <Component class="javax.swing.JLabel" name="lbl_UsuarioCliente">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -827,7 +803,7 @@
             <Property name="text" type="java.lang.String" value="Usuario del cliente:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_Nombre2">
+        <Component class="javax.swing.JTextField" name="txt_NombreCliente">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -839,7 +815,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbl_SeleccionarSala1">
+        <Component class="javax.swing.JLabel" name="lbl_costoBoleto">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -847,7 +823,7 @@
             <Property name="text" type="java.lang.String" value="costoBoleto"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbl_SeleccionarSala2">
+        <Component class="javax.swing.JLabel" name="lbl_Costo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -855,7 +831,7 @@
             <Property name="text" type="java.lang.String" value="Costo:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbl_Asiento1">
+        <Component class="javax.swing.JLabel" name="lbl_CambioPuntos">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -863,7 +839,7 @@
             <Property name="text" type="java.lang.String" value="Cambio/Puntos:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cmb_Funcion1">
+        <Component class="javax.swing.JComboBox" name="cmb_Funcion">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" id="Control" palette="2" red="f0" type="palette"/>
@@ -888,7 +864,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbl_Asiento2">
+        <Component class="javax.swing.JLabel" name="lbl_TotalT">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -896,7 +872,7 @@
             <Property name="text" type="java.lang.String" value="TOTAL:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbl_SeleccionarSala3">
+        <Component class="javax.swing.JLabel" name="lbl_Total">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -904,7 +880,7 @@
             <Property name="text" type="java.lang.String" value="total"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbl_Asiento3">
+        <Component class="javax.swing.JLabel" name="lbl_TipoPago">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -912,7 +888,7 @@
             <Property name="text" type="java.lang.String" value="Tipo de pago:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cmb_Funcion2">
+        <Component class="javax.swing.JComboBox" name="cmb_Descuento">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" id="Control" palette="2" red="f0" type="palette"/>
@@ -937,7 +913,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbl_Asiento4">
+        <Component class="javax.swing.JLabel" name="lbl_Descuento">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -945,7 +921,7 @@
             <Property name="text" type="java.lang.String" value="Descuento:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbl_Asiento5">
+        <Component class="javax.swing.JLabel" name="lbl_Variables">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -953,7 +929,7 @@
             <Property name="text" type="java.lang.String" value="cambio/puntos"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinner1">
+        <Component class="javax.swing.JSpinner" name="sp_Cantidad">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -963,7 +939,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbl_SeleccionarSala4">
+        <Component class="javax.swing.JLabel" name="lbl_Subtotal">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -971,7 +947,7 @@
             <Property name="text" type="java.lang.String" value="subtotal"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbl_SeleccionarSala5">
+        <Component class="javax.swing.JLabel" name="lbl_SubtotalT">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="0"/>
@@ -979,7 +955,7 @@
             <Property name="text" type="java.lang.String" value="Subtotal:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_Cancelar2">
+        <Component class="javax.swing.JButton" name="btn_CompletarVenta">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="8a" green="69" red="39" type="rgb"/>
