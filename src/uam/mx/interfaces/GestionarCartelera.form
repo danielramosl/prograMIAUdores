@@ -174,7 +174,7 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -454,7 +454,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="lbl_TituloPelicula" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lbl_DescripcionPelicula" pref="185" max="32767" attributes="0"/>
+                      <Component id="lbl_DescripcionPelicula" pref="160" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lbl_ClasificacionPelicula" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
