@@ -15,13 +15,15 @@ public class Película {
     private String descripción;
     private int duración;
     private String clasificación;
+    String portada;
 
-    public Película(int id, String nombre, String descripción, int duración, String clasificación) {
+    public Película(int id, String nombre, String descripción, int duración, String clasificación, String portada) {
         this.id = id;
         this.nombre = nombre;
         this.descripción = descripción;
         this.duración = duración;
         this.clasificación = clasificación;
+        this.portada = portada;
     }
 
     public int getId() {
@@ -43,4 +45,9 @@ public class Película {
     public String getClasificación() {
         return clasificación;
     }
+
+    public String getPortada() {
+        return portada;
+    }
+    
 }

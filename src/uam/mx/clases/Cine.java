@@ -87,7 +87,8 @@ public class Cine {
             String descripción = st.nextToken();
             int duración = Integer.parseInt(st.nextToken());
             String clasificación = st.nextToken();
-            Película p = new Película(id, nombre, descripción, duración, clasificación);
+            String portada = st.nextToken().replace("\"", "");
+            Película p = new Película(id, nombre, descripción, duración, clasificación, portada);
             al.add(p);
             s = br.readLine();
         }
