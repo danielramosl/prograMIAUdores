@@ -130,7 +130,7 @@
                       <Component id="txt_UsuarioCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lbl_UsuarioCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="28" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lbl_Contrasena" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txt_Contrasena" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -169,7 +169,7 @@
         <Component class="javax.swing.JLabel" name="loguito">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/uam/mx/interfaces/im&#xe1;genes/loguito.png"/>
+              <Image iconType="3" name="/uam/mx/interfaces/imagenes/loguito.png"/>
             </Property>
           </Properties>
         </Component>

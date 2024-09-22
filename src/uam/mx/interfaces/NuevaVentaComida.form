@@ -401,7 +401,7 @@
                       <Component id="lbl_TotalT" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lbl_Total" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="10" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lbl_TipoPago" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cmb_TipoPago" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -425,7 +425,7 @@
         <Component class="javax.swing.JLabel" name="loguito">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/uam/mx/interfaces/im&#xe1;genes/loguito.png"/>
+              <Image iconType="3" name="/uam/mx/interfaces/imagenes/loguito.png"/>
             </Property>
           </Properties>
         </Component>

@@ -409,7 +409,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="lbl_Titulo" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" pref="15" max="32767" attributes="0"/>
+                          <EmptySpace type="unrelated" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lbl_SeleccionarFuncion" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="cmb_Funcion" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -496,7 +496,7 @@
         <Component class="javax.swing.JLabel" name="loguito">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/uam/mx/interfaces/im&#xe1;genes/loguito.png"/>
+              <Image iconType="3" name="/uam/mx/interfaces/imagenes/loguito.png"/>
             </Property>
           </Properties>
         </Component>

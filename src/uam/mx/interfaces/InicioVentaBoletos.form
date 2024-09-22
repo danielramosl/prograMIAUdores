@@ -111,7 +111,7 @@
                       </Group>
                       <Component id="LOGOTE" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="88" max="32767" attributes="0"/>
+                  <EmptySpace pref="82" max="32767" attributes="0"/>
                   <Component id="btn_Regresar" min="-2" pref="45" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
@@ -142,7 +142,7 @@
         <Component class="javax.swing.JLabel" name="loguito">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/uam/mx/interfaces/im&#xe1;genes/loguito.png"/>
+              <Image iconType="3" name="/uam/mx/interfaces/imagenes/loguito.png"/>
             </Property>
           </Properties>
         </Component>
@@ -203,6 +203,9 @@
             </Property>
             <Property name="borderPainted" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_CarteleraActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn_RegistrarCliente">
           <Properties>
@@ -227,7 +230,7 @@
         <Component class="javax.swing.JLabel" name="LOGOTE">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/uam/mx/interfaces/im&#xe1;genes/boletos.png"/>
+              <Image iconType="3" name="/uam/mx/interfaces/imagenes/boletos.png"/>
             </Property>
           </Properties>
         </Component>

@@ -28,8 +28,8 @@ public class InicioCliente extends javax.swing.JFrame {
      */
     public InicioCliente() {
         initComponents();
-        Usuario u = InicioSesión.usuarioActual;
-        Cliente c = InicioSesión.cine.getSistemaUsuarios().buscarCliente(u);
+        Usuario u = InicioSesion.usuarioActual;
+        Cliente c = InicioSesion.cine.getSistemaUsuarios().buscarCliente(u);
         lbl_usuario.setText(u.getUsuario());
         lbl_totalPuntos.setText(Integer.toString(c.getPuntos()));
         txt_Nombre.setText(c.getNombre());
@@ -87,7 +87,7 @@ public class InicioCliente extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        loguito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imágenes/loguito.png"))); // NOI18N
+        loguito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imagenes/loguito.png"))); // NOI18N
 
         lbl_Usuario.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         lbl_Usuario.setText("Cliente");
@@ -269,7 +269,7 @@ public class InicioCliente extends javax.swing.JFrame {
                     .addComponent(txt_Contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_ModificarContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_NuevaContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_NuevaContrasena))
@@ -300,9 +300,9 @@ public class InicioCliente extends javax.swing.JFrame {
     private void btn_CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarSesionActionPerformed
         try {
             // TODO add your handling code here:
-            InicioSesión.usuarioActual = null;
+            InicioSesion.usuarioActual = null;
             this.dispose();
-            InicioSesión inicioSesión = new InicioSesión();
+            InicioSesion inicioSesión = new InicioSesion();
             inicioSesión.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(InicioCliente.class.getName()).log(Level.SEVERE, null, ex);
@@ -330,14 +330,14 @@ public class InicioCliente extends javax.swing.JFrame {
     private void btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GuardarActionPerformed
         // TODO add your handling code here:
         String nueva = txt_NuevaContrasena.getText();
-        if(nueva.equals(InicioSesión.usuarioActual.getContraseña())) {
+        if(nueva.equals(InicioSesion.usuarioActual.getContraseña())) {
             lbl_Mensaje.setText("La contraseña no puede ser la misma que la anterior.");
         } else {
             lbl_Mensaje.setText("La contraseña se ha guardado correctamente.");
-            InicioSesión.usuarioActual.setContraseña(nueva);
-            int i = InicioSesión.cine.getSistemaUsuarios().buscarUsuarioID(InicioSesión.usuarioActual);
+            InicioSesion.usuarioActual.setContraseña(nueva);
+            int i = InicioSesion.cine.getSistemaUsuarios().buscarUsuarioID(InicioSesion.usuarioActual);
             try {
-                InicioSesión.cine.getSistemaUsuarios().actualizarUsuario(i, InicioSesión.usuarioActual);
+                InicioSesion.cine.getSistemaUsuarios().actualizarUsuario(i, InicioSesion.usuarioActual);
             } catch (IOException ex) {
                 Logger.getLogger(InicioCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -345,7 +345,7 @@ public class InicioCliente extends javax.swing.JFrame {
             txt_NuevaContrasena.setVisible(false);
             btn_Guardar.setVisible(false);
             btn_Cancelar.setVisible(false);
-            txt_Contraseña.setText(InicioSesión.usuarioActual.getContraseña());
+            txt_Contraseña.setText(InicioSesion.usuarioActual.getContraseña());
         }
     }//GEN-LAST:event_btn_GuardarActionPerformed
 

@@ -9,21 +9,23 @@ import java.time.Duration;
  *
  * @author PrograMIAUdores
  */
-public class Película {
+public class Pelicula {
     private int id;
     private String nombre;
     private String descripción;
     private int duración;
     private String clasificación;
     String portada;
+    String portada2;
 
-    public Película(int id, String nombre, String descripción, int duración, String clasificación, String portada) {
+    public Pelicula(int id, String nombre, String descripción, int duración, String clasificación, String portada, String portada2) {
         this.id = id;
         this.nombre = nombre;
         this.descripción = descripción;
         this.duración = duración;
         this.clasificación = clasificación;
         this.portada = portada;
+        this.portada2 = portada2;
     }
 
     public int getId() {
@@ -48,6 +50,10 @@ public class Película {
 
     public String getPortada() {
         return portada;
+    }
+
+    public String getPortada2() {
+        return portada2;
     }
     
 }

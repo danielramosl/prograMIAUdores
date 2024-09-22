@@ -48,7 +48,7 @@ public class InicioVentaBoletos extends javax.swing.JFrame {
         btn_Regresar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_Regresar.setBorderPainted(false);
 
-        loguito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imágenes/loguito.png"))); // NOI18N
+        loguito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imagenes/loguito.png"))); // NOI18N
 
         lbl_Usuario.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         lbl_Usuario.setText("Vendedor de taquilla");
@@ -69,6 +69,11 @@ public class InicioVentaBoletos extends javax.swing.JFrame {
         btn_Cartelera.setText("Cartelera");
         btn_Cartelera.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_Cartelera.setBorderPainted(false);
+        btn_Cartelera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CarteleraActionPerformed(evt);
+            }
+        });
 
         btn_RegistrarCliente.setBackground(new java.awt.Color(57, 105, 138));
         btn_RegistrarCliente.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -77,7 +82,7 @@ public class InicioVentaBoletos extends javax.swing.JFrame {
         btn_RegistrarCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_RegistrarCliente.setBorderPainted(false);
 
-        LOGOTE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imágenes/boletos.png"))); // NOI18N
+        LOGOTE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imagenes/boletos.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -135,7 +140,7 @@ public class InicioVentaBoletos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_RegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(LOGOTE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(btn_Regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
@@ -155,6 +160,12 @@ public class InicioVentaBoletos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_CarteleraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CarteleraActionPerformed
+        this.dispose();
+        Cartelera cartelera = new Cartelera();
+        cartelera.setVisible(true);
+    }//GEN-LAST:event_btn_CarteleraActionPerformed
 
     /**
      * @param args the command line arguments

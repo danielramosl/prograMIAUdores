@@ -33,13 +33,13 @@ public final class GestionarEmpleados extends javax.swing.JFrame {
     
     public void LlenarEmpleados() {
         cmb_Empleado.removeAllItems();
-        ArrayList<Empleado> al = InicioSesión.cine.getSistemaUsuarios().getListaEmpleados();
+        ArrayList<Empleado> al = InicioSesion.cine.getSistemaUsuarios().getListaEmpleados();
         cmb_Empleado.addItem("-Seleccionar-");
         for(Empleado e : al) {
             if(e.getTipoEmpleado() == 0) {
                 continue;
             }
-            cmb_Empleado.addItem(InicioSesión.cine.getSistemaUsuarios().buscarUsuarioID(e.getId_usuario()).getUsuario());
+            cmb_Empleado.addItem(InicioSesion.cine.getSistemaUsuarios().buscarUsuarioID(e.getId_usuario()).getUsuario());
         }
     }
     
@@ -165,7 +165,7 @@ public final class GestionarEmpleados extends javax.swing.JFrame {
             }
         });
 
-        loguito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imágenes/loguito.png"))); // NOI18N
+        loguito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imagenes/loguito.png"))); // NOI18N
 
         lbl_Usuario.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         lbl_Usuario.setText("Administrador");
@@ -325,7 +325,7 @@ public final class GestionarEmpleados extends javax.swing.JFrame {
                 .addComponent(rbtn_VentaComida)
                 .addGap(18, 18, 18)
                 .addComponent(rbtn_RegistrarCliente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_EliminarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -366,8 +366,8 @@ public final class GestionarEmpleados extends javax.swing.JFrame {
             rbtn_RegistrarCliente.setSelected(false);
         } else if(cmb_Empleado.getSelectedIndex() > 0) {
             LlenarRoles();
-            Empleado e = InicioSesión.cine.getSistemaUsuarios().getListaEmpleados().get(cmb_Empleado.getSelectedIndex());
-            lbl_IdEmpleado.setText(InicioSesión.cine.getSistemaUsuarios().buscarUsuarioID(e.getId_usuario()).getUsuario());
+            Empleado e = InicioSesion.cine.getSistemaUsuarios().getListaEmpleados().get(cmb_Empleado.getSelectedIndex());
+            lbl_IdEmpleado.setText(InicioSesion.cine.getSistemaUsuarios().buscarUsuarioID(e.getId_usuario()).getUsuario());
             txt_Nombre.setText(e.getNombre());
             cmb_Roles.setSelectedIndex(e.getTipoEmpleado());
             if(e.getTipoEmpleado() == 1) {

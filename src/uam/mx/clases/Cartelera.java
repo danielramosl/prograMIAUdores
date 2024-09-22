@@ -20,8 +20,8 @@ import java.util.StringTokenizer;
  * @author PrograMIAUdores
  */
 public class Cartelera {
-    private ArrayList<Función> listaFunciones;
-    private ArrayList<Película> listaPelículas;
+    private ArrayList<Funcion> listaFunciones;
+    private ArrayList<Pelicula> listaPelículas;
     private LocalDate fecha;
 
     public Cartelera() throws IOException {
@@ -33,7 +33,7 @@ public class Cartelera {
     }
     
     public Boolean horarioFunciónDisponible(int id_sala, LocalDate fecha, LocalTime horario) {
-        for(Función f : listaFunciones) {
+        for(Funcion f : listaFunciones) {
             if(f.getId_sala() == id_sala && fecha.equals(f.getFecha()) && horario.equals(f.getHorario())) {
                 return false;
             }
@@ -54,7 +54,7 @@ public class Cartelera {
             LocalDate fecha = LocalDate.parse(st.nextToken());
             LocalTime horario = LocalTime.parse(st.nextToken());
             int formato = Integer.parseInt(st.nextToken());
-            Función f = new Función(id, id_película, id_sala, fecha, horario, formato);
+            Funcion f = new Funcion(id, id_película, id_sala, fecha, horario, formato);
             listaFunciones.add(f);
             s = br.readLine();
         }
@@ -74,7 +74,8 @@ public class Cartelera {
             int duración = Integer.parseInt(st.nextToken());
             String clasificación = st.nextToken();
             String portada = st.nextToken().replace("\"", "");
-            Película p = new Película(id, nombre, descripción, duración, clasificación, portada);
+            String portada2 = st.nextToken().replace("\"", "");
+            Pelicula p = new Pelicula(id, nombre, descripción, duración, clasificación, portada, portada2);
             listaPelículas.add(p);
             s = br.readLine();
         }
@@ -89,12 +90,12 @@ public class Cartelera {
         return listaFunciones.getLast().getId() + 1;
     }
     
-    public void nuevaFunción(Función f) throws IOException {
+    public void nuevaFunción(Funcion f) throws IOException {
         listaFunciones.add(f);
         FileWriter fw = new FileWriter("src/uam/mx/datos/funciones.dat");
         BufferedWriter bw = new BufferedWriter(fw);
         String nueva = "";
-        for(Función fn : listaFunciones) {
+        for(Funcion fn : listaFunciones) {
             nueva += fn.toString();
         }
         bw.write(nueva);
@@ -102,9 +103,12 @@ public class Cartelera {
         fw.close();
     }
     
-    public ArrayList<Película> getListaPelículas() {
+    public ArrayList<Pelicula> getListaPelículas() {
         return listaPelículas;
     }
     
-    
+    public ArrayList<Funcion> getListaFunciones(){
+        return listaFunciones;
+    }
+ 
 }

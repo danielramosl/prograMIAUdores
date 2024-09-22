@@ -11,8 +11,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import uam.mx.clases.Función;
-import uam.mx.clases.Película;
+import uam.mx.clases.Funcion;
+import uam.mx.clases.Pelicula;
 
 /**
  *
@@ -35,9 +35,9 @@ public class GestionarCartelera extends javax.swing.JFrame {
     
     public void llenarPelícula() {
         cmb_Pelicula.removeAllItems();
-        ArrayList<Película> al = InicioSesión.cine.getCartelera().getListaPelículas();
+        ArrayList<Pelicula> al = InicioSesion.cine.getCartelera().getListaPelículas();
         cmb_Pelicula.addItem("-Seleccionar-");
-        for(Película p : al) {
+        for(Pelicula p : al) {
             cmb_Pelicula.addItem(p.getNombre());
         }
     }
@@ -70,7 +70,7 @@ public class GestionarCartelera extends javax.swing.JFrame {
             lt = lt.plusHours(3);
             LocalDateTime ldt = LocalDateTime.of(ld, lt);
             if(ldt.isAfter(LocalDateTime.now())) {
-                if(InicioSesión.cine.getCartelera().horarioFunciónDisponible(cmb_Sala.getSelectedIndex(), ld, lt) == true) {
+                if(InicioSesion.cine.getCartelera().horarioFunciónDisponible(cmb_Sala.getSelectedIndex(), ld, lt) == true) {
                     cmb_Horario.addItem(lt.toString());
                 }
             }
@@ -126,7 +126,7 @@ public class GestionarCartelera extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        loguito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imágenes/loguito.png"))); // NOI18N
+        loguito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imagenes/loguito.png"))); // NOI18N
 
         btn_Regresar.setBackground(new java.awt.Color(102, 102, 102));
         btn_Regresar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -375,7 +375,7 @@ public class GestionarCartelera extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(lbl_Mensaje)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -392,9 +392,7 @@ public class GestionarCartelera extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -409,7 +407,7 @@ public class GestionarCartelera extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(cmb_Pelicula.getSelectedIndex() > 0) {
             int id = cmb_Pelicula.getSelectedIndex() - 1;
-            Película p = InicioSesión.cine.getCartelera().getListaPelículas().get(id);
+            Pelicula p = InicioSesion.cine.getCartelera().getListaPelículas().get(id);
             lbl_TituloPelicula.setText(p.getNombre());
             lbl_DescripcionPelicula.setText("<html>" + p.getDescripción() + "</html>");
             lbl_ClasificacionPelicula.setText(p.getClasificación());
@@ -437,15 +435,15 @@ public class GestionarCartelera extends javax.swing.JFrame {
 
     private void btn_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarActionPerformed
         // TODO add your handling code here:
-        int id = InicioSesión.cine.getCartelera().nuevoIdFunción();
+        int id = InicioSesion.cine.getCartelera().nuevoIdFunción();
         int id_película = cmb_Pelicula.getSelectedIndex() - 1;
         int id_sala = cmb_Sala.getSelectedIndex() - 1;
         LocalDate fecha = LocalDate.parse((String)cmb_Fecha.getSelectedItem());
         LocalTime horario = LocalTime.parse((String)cmb_Horario.getSelectedItem());
         int formato = cmb_Formato.getSelectedIndex();
-        Función f = new Función(id, id_película, id_sala, fecha, horario, formato);
+        Funcion f = new Funcion(id, id_película, id_sala, fecha, horario, formato);
         try {
-            InicioSesión.cine.getCartelera().nuevaFunción(f);
+            InicioSesion.cine.getCartelera().nuevaFunción(f);
         } catch (IOException ex) {
             Logger.getLogger(GestionarCartelera.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -4,6 +4,22 @@
  */
 package uam.mx.interfaces;
 
+import java.awt.Component;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import uam.mx.clases.Funcion;
+import uam.mx.clases.Pelicula;
+import javax.swing.table.DefaultTableModel;
+import uam.mx.interfaces.InicioSesion;
+
+
 /**
  *
  * @author Laura
@@ -13,9 +29,67 @@ public class Cartelera extends javax.swing.JFrame {
     /**
      * Creates new form Cartelera
      */
+    
+     private class ImageRenderer extends DefaultTableCellRenderer {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            if (value instanceof JLabel) {
+                JLabel label = (JLabel) value;
+                return label;
+            }
+            return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        }
+    }
+     
+    public void llenarTablaPorFecha() {
+        Date selectedDate = jdc_Fecha.getDate();
+        LocalDate fechaSeleccionada = selectedDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        
+        DefaultTableModel modelo = new DefaultTableModel(new String[] {"Portada", "Título", "Duración", "Clasificación", "Sala", "Horario", "Formato"}, 0);
+        ArrayList<Funcion> lista = InicioSesion.cine.getCartelera().getListaFunciones();
+        ArrayList<Pelicula> peliculas = InicioSesion.cine.getCartelera().getListaPelículas();
+
+        try {
+            
+            for (Funcion funcion : lista){
+                if (funcion.getFecha().equals(fechaSeleccionada)) {
+                JLabel portada = new JLabel();
+                int id_pelicula = funcion.getId_película();
+                
+                portada.setIcon(new javax.swing.ImageIcon(getClass().getResource(peliculas.get(id_pelicula).getPortada2())));
+                
+                    modelo.addRow(new Object[] { 
+                        portada, 
+                        peliculas.get(id_pelicula).getNombre(), 
+                        peliculas.get(id_pelicula).getDuración(), 
+                        peliculas.get(id_pelicula).getClasificación(), 
+                        funcion.getId_sala(), 
+                        funcion.getHorario(), 
+                        formatoToString(funcion.getFormato())
+                    });
+                }   
+            }
+            
+            tbl_Cartelera.setModel(modelo);
+            tbl_Cartelera.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
+            tbl_Cartelera.setRowHeight(100);
+        } catch (Exception ex) {
+          System.err.println("Ha ocurrido un error!" + ex.getMessage());
+        }    
+    }
+      
+        private String formatoToString(int formato) {
+            return (formato == 1) ? "3D" : "2D";
+        }
+   
+    
     public Cartelera() {
         initComponents();
+        jdc_Fecha.setDate(new Date());
+        llenarTablaPorFecha();
+        jdc_Fecha.addPropertyChangeListener("date", evt -> llenarTablaPorFecha());
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,9 +106,9 @@ public class Cartelera extends javax.swing.JFrame {
         lbl_Usuario = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         lbl_Titulo = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jdc_Fecha = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_Cartelera = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,7 +121,7 @@ public class Cartelera extends javax.swing.JFrame {
         btn_Cancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_Cancelar.setBorderPainted(false);
 
-        loguito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imágenes/loguito.png"))); // NOI18N
+        loguito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imagenes/loguito.png"))); // NOI18N
 
         lbl_Usuario.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         lbl_Usuario.setText("Vendedor de taquilla");
@@ -58,7 +132,7 @@ public class Cartelera extends javax.swing.JFrame {
         jScrollPane1.setBackground(java.awt.SystemColor.control);
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_Cartelera.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -69,7 +143,7 @@ public class Cartelera extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_Cartelera);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,7 +162,7 @@ public class Cartelera extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jdc_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE))
                 .addGap(100, 100, 100))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -117,12 +191,12 @@ public class Cartelera extends javax.swing.JFrame {
                 .addGap(59, 59, 59)
                 .addComponent(lbl_Titulo)
                 .addGap(43, 43, 43)
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jdc_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -176,13 +250,13 @@ public class Cartelera extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Cancelar;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private com.toedter.calendar.JDateChooser jdc_Fecha;
     private javax.swing.JLabel lbl_Titulo;
     private javax.swing.JLabel lbl_Usuario;
     private javax.swing.JLabel loguito;
+    private javax.swing.JTable tbl_Cartelera;
     // End of variables declaration//GEN-END:variables
 }
