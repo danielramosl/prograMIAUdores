@@ -4,6 +4,10 @@
  */
 package uam.mx.interfaces;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author prograMIAUdores
@@ -27,7 +31,7 @@ public class InicioVentaBoletos extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btn_Regresar = new javax.swing.JButton();
+        btn_CerrarSesion = new javax.swing.JButton();
         loguito = new javax.swing.JLabel();
         lbl_Usuario = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -41,12 +45,17 @@ public class InicioVentaBoletos extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        btn_Regresar.setBackground(new java.awt.Color(102, 102, 102));
-        btn_Regresar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btn_Regresar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Regresar.setText("Regresar");
-        btn_Regresar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_Regresar.setBorderPainted(false);
+        btn_CerrarSesion.setBackground(new java.awt.Color(102, 102, 102));
+        btn_CerrarSesion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btn_CerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        btn_CerrarSesion.setText("Cerrar sesión");
+        btn_CerrarSesion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_CerrarSesion.setBorderPainted(false);
+        btn_CerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CerrarSesionActionPerformed(evt);
+            }
+        });
 
         loguito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imagenes/loguito.png"))); // NOI18N
 
@@ -62,6 +71,11 @@ public class InicioVentaBoletos extends javax.swing.JFrame {
         btn_NuevaVenta.setText("Nueva venta");
         btn_NuevaVenta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_NuevaVenta.setBorderPainted(false);
+        btn_NuevaVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_NuevaVentaActionPerformed(evt);
+            }
+        });
 
         btn_Cartelera.setBackground(new java.awt.Color(57, 105, 138));
         btn_Cartelera.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -81,6 +95,11 @@ public class InicioVentaBoletos extends javax.swing.JFrame {
         btn_RegistrarCliente.setText("Registrar cliente");
         btn_RegistrarCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_RegistrarCliente.setBorderPainted(false);
+        btn_RegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RegistrarClienteActionPerformed(evt);
+            }
+        });
 
         LOGOTE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imagenes/boletos.png"))); // NOI18N
 
@@ -100,7 +119,7 @@ public class InicioVentaBoletos extends javax.swing.JFrame {
                         .addGap(15, 15, 15))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btn_Regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_CerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(95, 95, 95))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(134, 134, 134)
@@ -141,7 +160,7 @@ public class InicioVentaBoletos extends javax.swing.JFrame {
                         .addComponent(btn_RegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(LOGOTE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                .addComponent(btn_Regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_CerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
 
@@ -166,6 +185,31 @@ public class InicioVentaBoletos extends javax.swing.JFrame {
         Cartelera cartelera = new Cartelera();
         cartelera.setVisible(true);
     }//GEN-LAST:event_btn_CarteleraActionPerformed
+
+    private void btn_CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarSesionActionPerformed
+           try {
+            // TODO add your handling code here:
+            InicioSesion.usuarioActual = null;
+            this.dispose();
+            InicioSesion inicioSesión = new InicioSesion();
+            inicioSesión.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(InicioCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btn_CerrarSesionActionPerformed
+
+    private void btn_NuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NuevaVentaActionPerformed
+       this.dispose();
+       NuevaVentaBoletos nuevaVentaBoletos = new NuevaVentaBoletos();
+       nuevaVentaBoletos.setVisible(true);
+    }//GEN-LAST:event_btn_NuevaVentaActionPerformed
+
+    private void btn_RegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistrarClienteActionPerformed
+        this.dispose();
+        RegistrarCliente registrarCliente = new RegistrarCliente();
+        registrarCliente.setVisible(true);
+    }//GEN-LAST:event_btn_RegistrarClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,9 +249,9 @@ public class InicioVentaBoletos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LOGOTE;
     private javax.swing.JButton btn_Cartelera;
+    private javax.swing.JButton btn_CerrarSesion;
     private javax.swing.JButton btn_NuevaVenta;
     private javax.swing.JButton btn_RegistrarCliente;
-    private javax.swing.JButton btn_Regresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbl_Titulo;

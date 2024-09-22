@@ -76,7 +76,7 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="btn_Regresar" min="-2" pref="164" max="-2" attributes="0"/>
+                  <Component id="btn_CerrarSesion" min="-2" pref="164" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -112,7 +112,7 @@
                       </Group>
                   </Group>
                   <EmptySpace pref="67" max="32767" attributes="0"/>
-                  <Component id="btn_Regresar" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="btn_CerrarSesion" min="-2" pref="45" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -159,7 +159,7 @@
             <Property name="borderPainted" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_Regresar">
+        <Component class="javax.swing.JButton" name="btn_CerrarSesion">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>
@@ -170,7 +170,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Regresar"/>
+            <Property name="text" type="java.lang.String" value="Cerrar sesi&#xf3;n"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
                 <BevelBorder/>

@@ -29,7 +29,7 @@ public class InicioVentaComida extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btn_Cartelera = new javax.swing.JButton();
         btn_RegistrarCliente = new javax.swing.JButton();
-        btn_Regresar = new javax.swing.JButton();
+        btn_CerrarSesion = new javax.swing.JButton();
         loguito = new javax.swing.JLabel();
         lbl_Usuario = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -54,12 +54,12 @@ public class InicioVentaComida extends javax.swing.JFrame {
         btn_RegistrarCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_RegistrarCliente.setBorderPainted(false);
 
-        btn_Regresar.setBackground(new java.awt.Color(102, 102, 102));
-        btn_Regresar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btn_Regresar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Regresar.setText("Regresar");
-        btn_Regresar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_Regresar.setBorderPainted(false);
+        btn_CerrarSesion.setBackground(new java.awt.Color(102, 102, 102));
+        btn_CerrarSesion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btn_CerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        btn_CerrarSesion.setText("Cerrar sesión");
+        btn_CerrarSesion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_CerrarSesion.setBorderPainted(false);
 
         loguito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imagenes/loguito.png"))); // NOI18N
 
@@ -100,7 +100,7 @@ public class InicioVentaComida extends javax.swing.JFrame {
                 .addContainerGap(179, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_Regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_CerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(95, 95, 95))
         );
         jPanel1Layout.setVerticalGroup(
@@ -128,7 +128,7 @@ public class InicioVentaComida extends javax.swing.JFrame {
                         .addGap(67, 67, 67)
                         .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addComponent(btn_Regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_CerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
 
@@ -183,8 +183,8 @@ public class InicioVentaComida extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Cartelera;
+    private javax.swing.JButton btn_CerrarSesion;
     private javax.swing.JButton btn_RegistrarCliente;
-    private javax.swing.JButton btn_Regresar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;

@@ -130,12 +130,12 @@
                       <Component id="txt_UsuarioCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lbl_UsuarioCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="35" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lbl_Contrasena" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txt_Contrasena" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btn_Cancelar" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                       <Component id="btn_Registrar" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
@@ -165,6 +165,9 @@
             </Property>
             <Property name="borderPainted" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_CancelarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="loguito">
           <Properties>

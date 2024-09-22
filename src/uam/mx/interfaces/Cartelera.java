@@ -48,7 +48,10 @@ public class Cartelera extends javax.swing.JFrame {
         DefaultTableModel modelo = new DefaultTableModel(new String[] {"Portada", "Título", "Duración", "Clasificación", "Sala", "Horario", "Formato"}, 0);
         ArrayList<Funcion> lista = InicioSesion.cine.getCartelera().getListaFunciones();
         ArrayList<Pelicula> peliculas = InicioSesion.cine.getCartelera().getListaPelículas();
-
+        
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        
         try {
             
             for (Funcion funcion : lista){
@@ -73,8 +76,23 @@ public class Cartelera extends javax.swing.JFrame {
             tbl_Cartelera.setModel(modelo);
             tbl_Cartelera.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
             tbl_Cartelera.setRowHeight(100);
+            
+            tbl_Cartelera.getColumnModel().getColumn(0).setPreferredWidth(114 ); // Portada
+            tbl_Cartelera.getColumnModel().getColumn(1).setPreferredWidth(240); // Título
+            tbl_Cartelera.getColumnModel().getColumn(2).setPreferredWidth(80); // Duración
+            tbl_Cartelera.getColumnModel().getColumn(3).setPreferredWidth(100); // Clasificación
+            tbl_Cartelera.getColumnModel().getColumn(4).setPreferredWidth(70);  // Sala
+            tbl_Cartelera.getColumnModel().getColumn(5).setPreferredWidth(70); // Horario
+            tbl_Cartelera.getColumnModel().getColumn(6).setPreferredWidth(70); // Formato
+            
+            tbl_Cartelera.getTableHeader().setDefaultRenderer(centerRenderer); 
+            
+            for (int i = 1; i < tbl_Cartelera.getColumnCount(); i++) {
+                tbl_Cartelera.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+            }
+            
         } catch (Exception ex) {
-          System.err.println("Ha ocurrido un error!" + ex.getMessage());
+          System.err.println("Ha ocurrido un error" + ex.getMessage());
         }    
     }
       
@@ -120,6 +138,11 @@ public class Cartelera extends javax.swing.JFrame {
         btn_Cancelar.setText("Regresar");
         btn_Cancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_Cancelar.setBorderPainted(false);
+        btn_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CancelarActionPerformed(evt);
+            }
+        });
 
         loguito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imagenes/loguito.png"))); // NOI18N
 
@@ -212,6 +235,12 @@ public class Cartelera extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CancelarActionPerformed
+       this.dispose();
+       InicioVentaBoletos inicioVentaBoletos = new InicioVentaBoletos();
+       inicioVentaBoletos.setVisible(true);
+    }//GEN-LAST:event_btn_CancelarActionPerformed
 
     /**
      * @param args the command line arguments

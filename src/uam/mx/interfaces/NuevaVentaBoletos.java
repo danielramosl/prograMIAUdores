@@ -200,6 +200,11 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
         btn_Regresar.setText("Regresar");
         btn_Regresar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_Regresar.setBorderPainted(false);
+        btn_Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RegresarActionPerformed(evt);
+            }
+        });
 
         loguito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imagenes/loguito.png"))); // NOI18N
 
@@ -559,6 +564,12 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegresarActionPerformed
+       this.dispose();
+       InicioVentaBoletos inicioVentaBoletos = new InicioVentaBoletos();
+       inicioVentaBoletos.setVisible(true);
+    }//GEN-LAST:event_btn_RegresarActionPerformed
 
     /**
      * @param args the command line arguments
