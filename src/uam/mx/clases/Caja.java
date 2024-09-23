@@ -18,4 +18,10 @@ public class Caja {
         this.listaVentas = listaVentas;
         this.total = total;
     }
+
+    public void NuevaVenta() {
+        Venta venta = new Venta();
+        //Cosas
+        listaVentas.add(venta);
+    }
 }
