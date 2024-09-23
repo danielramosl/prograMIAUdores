@@ -37,7 +37,8 @@ public class Menu {
             int precio = Integer.parseInt(st.nextToken());
             int inventario = Integer.parseInt(st.nextToken());
             String imagen = st.nextToken().replace("\"", "");
-            Comida c = new Comida(id, nombre, precio, inventario, imagen);
+            String portada = st.nextToken().replace("\"", "");
+            Comida c = new Comida(id, nombre, precio, inventario, imagen, portada);
             listaComidas.add(c);
             s = br.readLine();
         }

@@ -154,11 +154,6 @@ public class GestionarCartelera extends javax.swing.JFrame {
                 cmb_PeliculaItemStateChanged(evt);
             }
         });
-        cmb_Pelicula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmb_PeliculaActionPerformed(evt);
-            }
-        });
 
         lbl_SeleccionarFormato.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_SeleccionarFormato.setText("Horario");
@@ -397,11 +392,6 @@ public class GestionarCartelera extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cmb_PeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_PeliculaActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_cmb_PeliculaActionPerformed
 
     private void cmb_PeliculaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_PeliculaItemStateChanged
         // TODO add your handling code here:

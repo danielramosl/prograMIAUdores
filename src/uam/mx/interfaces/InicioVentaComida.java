@@ -58,6 +58,11 @@ public class InicioVentaComida extends javax.swing.JFrame {
         btn_NuevaVenta.setText("Nueva venta");
         btn_NuevaVenta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_NuevaVenta.setBorderPainted(false);
+        btn_NuevaVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_NuevaVentaActionPerformed(evt);
+            }
+        });
 
         btn_CerrarSesion.setBackground(new java.awt.Color(102, 102, 102));
         btn_CerrarSesion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -156,6 +161,12 @@ public class InicioVentaComida extends javax.swing.JFrame {
        Menu menu = new Menu();
        menu.setVisible(true);
     }//GEN-LAST:event_btn_MenuActionPerformed
+
+    private void btn_NuevaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NuevaVentaActionPerformed
+       this.dispose();
+       NuevaVentaComida nuevaVentaComida = new NuevaVentaComida();
+       nuevaVentaComida.setVisible(true);
+    }//GEN-LAST:event_btn_NuevaVentaActionPerformed
 
     /**
      * @param args the command line arguments

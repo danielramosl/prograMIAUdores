@@ -4,6 +4,10 @@
  */
 package uam.mx.interfaces;
 
+import java.util.ArrayList;
+import uam.mx.clases.Comida;
+import uam.mx.clases.Pelicula;
+
 /**
  *
  * @author Laura
@@ -15,8 +19,16 @@ public class NuevaVentaComida extends javax.swing.JFrame {
      */
     public NuevaVentaComida() {
         initComponents();
+        llenarPelícula();
     }
-
+    public void llenarPelícula() {
+        cmb_Comida.removeAllItems();
+        ArrayList<Comida> al = InicioSesion.cine.getMenu().getListaComidas();
+        cmb_Comida.addItem("-Seleccionar-");
+        for(Comida c : al) {
+            cmb_Comida.addItem(c.getNombre());
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -199,6 +211,11 @@ public class NuevaVentaComida extends javax.swing.JFrame {
         cmb_Comida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmb_Comida.setToolTipText("");
         cmb_Comida.setBorder(null);
+        cmb_Comida.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmb_ComidaItemStateChanged(evt);
+            }
+        });
 
         lbl_TotalT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_TotalT.setText("TOTAL:");
@@ -308,11 +325,6 @@ public class NuevaVentaComida extends javax.swing.JFrame {
         btn_Agregar.setText("Agregar");
         btn_Agregar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_Agregar.setBorderPainted(false);
-        btn_Agregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_AgregarActionPerformed(evt);
-            }
-        });
 
         btn_Eliminar.setBackground(new java.awt.Color(143, 29, 32));
         btn_Eliminar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -320,11 +332,6 @@ public class NuevaVentaComida extends javax.swing.JFrame {
         btn_Eliminar.setText("Eliminar");
         btn_Eliminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_Eliminar.setBorderPainted(false);
-        btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_EliminarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -457,13 +464,15 @@ public class NuevaVentaComida extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_AgregarActionPerformed
-
-    private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_EliminarActionPerformed
+    private void cmb_ComidaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_ComidaItemStateChanged
+        if(cmb_Comida.getSelectedIndex() > 0) {
+            int id = cmb_Comida.getSelectedIndex() - 1;
+            Comida c = InicioSesion.cine.getMenu().getListaComidas().get(id);
+            lbl_NombreComida.setText(c.getNombre());
+            lbl_CostoComida.setText(Integer.toString((int) c.getPrecio()));
+            lbl_ComidaFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource(c.getPortada())));
+        }
+    }//GEN-LAST:event_cmb_ComidaItemStateChanged
 
     /**
      * @param args the command line arguments

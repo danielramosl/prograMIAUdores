@@ -14,13 +14,15 @@ public class Comida {
     private float precio;
     private int inventario;
     private String imagen;
+    private String portada;
   
-    public Comida(int id, String nombre, float precio, int inventario, String imagen) {
+    public Comida(int id, String nombre, float precio, int inventario, String imagen, String portada) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.inventario = inventario;
         this.imagen = imagen;
+        this.portada = portada;
     }
 
     public int getId() {
@@ -42,5 +44,9 @@ public class Comida {
     public String getImagen() {
         return imagen;
     }
-    
+
+    public String getPortada() {
+        return portada;
+    }
+
 }
