@@ -27,7 +27,7 @@ public class Cine {
     private Caja cajaComida;
     private SistemaUsuarios sistemaUsuarios;
     private Cartelera cartelera;
-    private ArrayList<Comida> listaComida;
+    private Menu menu;
     private ArrayList<Sala> listaSalas;
 
     public Cine() throws IOException {
@@ -35,10 +35,15 @@ public class Cine {
         dirección = "MICHIgan";
         sistemaUsuarios = new SistemaUsuarios();
         cartelera = new Cartelera();
+        menu = new Menu();
     }
     
     public Cartelera getCartelera() {
         return cartelera;
+    }
+    
+    public Menu getMenu() {
+        return menu;
     }
     
     public SistemaUsuarios getSistemaUsuarios() {

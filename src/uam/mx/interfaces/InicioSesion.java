@@ -181,6 +181,10 @@ public class InicioSesion extends javax.swing.JFrame {
                     this.dispose();
                     InicioVentaBoletos inicioVentaBoletos = new InicioVentaBoletos();
                     inicioVentaBoletos.setVisible(true);
+                } else if (e.getTipoEmpleado() == 2) {
+                    this.dispose();
+                    InicioVentaComida inicioVentaComida = new InicioVentaComida();
+                    inicioVentaComida.setVisible(true);
                 }
             } else {
                 Cliente c = cine.getSistemaUsuarios().buscarCliente(u);

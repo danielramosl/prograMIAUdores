@@ -5,9 +5,7 @@
 package uam.mx.interfaces;
 
 import java.awt.Component;
-import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,7 +15,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import uam.mx.clases.Funcion;
 import uam.mx.clases.Pelicula;
 import javax.swing.table.DefaultTableModel;
-import uam.mx.interfaces.InicioSesion;
 
 
 /**

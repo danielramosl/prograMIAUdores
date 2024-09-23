@@ -27,8 +27,8 @@ public class InicioVentaComida extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btn_Cartelera = new javax.swing.JButton();
-        btn_RegistrarCliente = new javax.swing.JButton();
+        btn_Menu = new javax.swing.JButton();
+        btn_NuevaVenta = new javax.swing.JButton();
         btn_CerrarSesion = new javax.swing.JButton();
         loguito = new javax.swing.JLabel();
         lbl_Usuario = new javax.swing.JLabel();
@@ -40,19 +40,24 @@ public class InicioVentaComida extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        btn_Cartelera.setBackground(new java.awt.Color(57, 105, 138));
-        btn_Cartelera.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btn_Cartelera.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Cartelera.setText("Menú");
-        btn_Cartelera.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_Cartelera.setBorderPainted(false);
+        btn_Menu.setBackground(new java.awt.Color(57, 105, 138));
+        btn_Menu.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btn_Menu.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Menu.setText("Menú");
+        btn_Menu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_Menu.setBorderPainted(false);
+        btn_Menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_MenuActionPerformed(evt);
+            }
+        });
 
-        btn_RegistrarCliente.setBackground(new java.awt.Color(57, 105, 138));
-        btn_RegistrarCliente.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btn_RegistrarCliente.setForeground(new java.awt.Color(255, 255, 255));
-        btn_RegistrarCliente.setText("Nueva venta");
-        btn_RegistrarCliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_RegistrarCliente.setBorderPainted(false);
+        btn_NuevaVenta.setBackground(new java.awt.Color(57, 105, 138));
+        btn_NuevaVenta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btn_NuevaVenta.setForeground(new java.awt.Color(255, 255, 255));
+        btn_NuevaVenta.setText("Nueva venta");
+        btn_NuevaVenta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_NuevaVenta.setBorderPainted(false);
 
         btn_CerrarSesion.setBackground(new java.awt.Color(102, 102, 102));
         btn_CerrarSesion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -93,8 +98,8 @@ public class InicioVentaComida extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(134, 134, 134)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_Cartelera, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_RegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_NuevaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(140, 140, 140)
                 .addComponent(jLabel2)
                 .addContainerGap(179, Short.MAX_VALUE))
@@ -121,9 +126,9 @@ public class InicioVentaComida extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(120, 120, 120)
-                        .addComponent(btn_Cartelera, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_Menu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(97, 97, 97)
-                        .addComponent(btn_RegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_NuevaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addComponent(jLabel2)))
@@ -145,6 +150,12 @@ public class InicioVentaComida extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_MenuActionPerformed
+       this.dispose();
+       Menu menu = new Menu();
+       menu.setVisible(true);
+    }//GEN-LAST:event_btn_MenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,9 +193,9 @@ public class InicioVentaComida extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_Cartelera;
     private javax.swing.JButton btn_CerrarSesion;
-    private javax.swing.JButton btn_RegistrarCliente;
+    private javax.swing.JButton btn_Menu;
+    private javax.swing.JButton btn_NuevaVenta;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;

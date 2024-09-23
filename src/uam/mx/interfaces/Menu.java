@@ -4,6 +4,15 @@
  */
 package uam.mx.interfaces;
 
+import java.awt.Component;
+import java.util.ArrayList;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import uam.mx.clases.Comida;
+import uam.mx.clases.Funcion;
+
 /**
  *
  * @author Laura
@@ -13,8 +22,59 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
+    
+      private class ImageRenderer extends DefaultTableCellRenderer {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            if (value instanceof JLabel) {
+                JLabel label = (JLabel) value;
+                return label;
+            }
+            return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        }
+    }
+    
+    public void llenarTabla(){ 
+        DefaultTableModel modelo = new DefaultTableModel(new String[] {"Imagen", "Nombre", "Precio"}, 0);
+        ArrayList<Comida> lista = InicioSesion.cine.getMenu().getListaComidas();
+        
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        
+        try {
+            for (Comida comida : lista) {
+               JLabel imagen = new JLabel();
+               imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource(comida.getImagen())));
+                   modelo.addRow(new Object[] { 
+                        imagen, 
+                        comida.getNombre(),
+                        comida.getPrecio()
+                    });
+            }
+            tbl_Menu.setModel(modelo);
+            tbl_Menu.getColumnModel().getColumn(0).setCellRenderer(new Menu.ImageRenderer());
+            tbl_Menu.setRowHeight(100);
+            
+            tbl_Menu.getColumnModel().getColumn(0).setPreferredWidth(114 ); // Portada
+            tbl_Menu.getColumnModel().getColumn(1).setPreferredWidth(350); // Título
+            tbl_Menu.getColumnModel().getColumn(2).setPreferredWidth(250); // Duración
+            
+            
+            tbl_Menu.getTableHeader().setDefaultRenderer(centerRenderer); 
+            
+            for (int i = 1; i < tbl_Menu.getColumnCount(); i++) {
+                tbl_Menu.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+            }
+            
+        } 
+        catch (Exception ex) {
+             System.err.println("Ha ocurrido un error" + ex.getMessage());
+        }
+    }
+    
     public Menu() {
         initComponents();
+        llenarTabla();
     }
 
     /**
@@ -45,6 +105,11 @@ public class Menu extends javax.swing.JFrame {
         btn_Regresar.setText("Regresar");
         btn_Regresar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_Regresar.setBorderPainted(false);
+        btn_Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RegresarActionPerformed(evt);
+            }
+        });
 
         loguito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imagenes/loguito.png"))); // NOI18N
 
@@ -131,6 +196,12 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegresarActionPerformed
+         this.dispose();
+       InicioVentaComida inicioVentaComida = new InicioVentaComida();
+       inicioVentaComida.setVisible(true);
+    }//GEN-LAST:event_btn_RegresarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -156,6 +227,9 @@ public class Menu extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
