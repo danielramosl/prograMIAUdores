@@ -36,6 +36,19 @@ public class Empleado {
     public int getTipoEmpleado() {
         return tipoEmpleado;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setTipoEmpleado(int tipoEmpleado) {
+        this.tipoEmpleado = tipoEmpleado;
+    }
+
+    @Override
+    public String toString() {
+        return id + "," + id_usuario + "," + nombre + "," + tipoEmpleado + '\n';
+    }
     
     
 }

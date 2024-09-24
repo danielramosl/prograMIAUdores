@@ -16,14 +16,14 @@ import uam.mx.clases.Usuario;
  *
  * @author HP
  */
-public class InicioSesion extends javax.swing.JFrame {
+public class InicioSesión extends javax.swing.JFrame {
     public static Cine cine = null;
     public static Usuario usuarioActual;
     /**
      * Creates new form InicioSesión
      * @throws java.io.IOException
      */
-    public InicioSesion() throws IOException {
+    public InicioSesión() throws IOException {
         initComponents();
         if(cine == null) {
             cine = new Cine();
@@ -173,21 +173,26 @@ public class InicioSesion extends javax.swing.JFrame {
             usuarioActual = u;
             Empleado e = cine.getSistemaUsuarios().buscarEmpleado(u);
             if(e != null) {
-                if(e.getTipoEmpleado() == 0) {
-                    this.dispose();
-                    InicioAdministrador inicioAdministrador = new InicioAdministrador();
-                    inicioAdministrador.setVisible(true);
-                } else if (e.getTipoEmpleado() == 1) {
-                    this.dispose();
-                    InicioVentaBoletos inicioVentaBoletos = new InicioVentaBoletos();
-                    inicioVentaBoletos.setVisible(true);
-                } else if (e.getTipoEmpleado() == 2) {
-                    this.dispose();
-                    InicioVentaComida inicioVentaComida = new InicioVentaComida();
-                    inicioVentaComida.setVisible(true);
+                switch (e.getTipoEmpleado()) {
+                    case 0 -> {
+                        this.dispose();
+                        InicioAdministrador inicioAdministrador = new InicioAdministrador();
+                        inicioAdministrador.setVisible(true);
+                    }
+                    case 1 -> {
+                        this.dispose();
+                        InicioVentaBoletos inicioVentaBoletos = new InicioVentaBoletos();
+                        inicioVentaBoletos.setVisible(true);
+                    }
+                    case 2 -> {
+                        this.dispose();
+                        InicioVentaComida inicioVentaComida = new InicioVentaComida();
+                        inicioVentaComida.setVisible(true);
+                    }
+                    default -> {
+                    }
                 }
             } else {
-                Cliente c = cine.getSistemaUsuarios().buscarCliente(u);
                 this.dispose();
                 InicioCliente inicioCliente = new InicioCliente();
                 inicioCliente.setVisible(true);
@@ -214,14 +219,16 @@ public class InicioSesion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InicioSesión.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InicioSesión.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InicioSesión.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InicioSesión.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -229,9 +236,9 @@ public class InicioSesion extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new InicioSesion().setVisible(true);
+                    new InicioSesión().setVisible(true);
                 } catch (IOException ex) {
-                    Logger.getLogger(InicioSesion.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(InicioSesión.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

@@ -11,19 +11,19 @@ import java.time.LocalTime;
  *
  * @author PrograMIAUdores
  */
-public class Funcion {
+public class Función {
     private int id;
     private int id_película;
-    private int id_sala;
+    private Sala sala;
     private LocalDate fecha;
     private LocalTime horario;
     private int formato;
     private float costoBoleto;
 
-    public Funcion(int id, int id_película, int id_sala, LocalDate fecha, LocalTime horario, int formato) {
+    public Función(int id, int id_película, LocalDate fecha, LocalTime horario, int formato, Sala sala) {
         this.id = id;
         this.id_película = id_película;
-        this.id_sala = id_sala;
+        this.sala = sala;
         this.fecha = fecha;
         this.horario = horario;
         this.formato = formato;
@@ -32,7 +32,7 @@ public class Funcion {
 
     @Override
     public String toString() {
-        return id + "," + id_película + "," + id_sala + "," + fecha + "," + horario + "," + formato + '\n';
+        return id + "," + id_película + "," + fecha + "," + horario + "," + formato + "," + sala + '\n';
     }
 
     public int getId_película() {
@@ -51,8 +51,8 @@ public class Funcion {
         return id;
     }
     
-    public int getId_sala() {
-        return id_sala;
+    public Sala getSsala() {
+        return sala;
     }
 
     public LocalDate getFecha() {

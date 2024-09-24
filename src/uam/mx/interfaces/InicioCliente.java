@@ -28,8 +28,8 @@ public class InicioCliente extends javax.swing.JFrame {
      */
     public InicioCliente() {
         initComponents();
-        Usuario u = InicioSesion.usuarioActual;
-        Cliente c = InicioSesion.cine.getSistemaUsuarios().buscarCliente(u);
+        Usuario u = InicioSesión.usuarioActual;
+        Cliente c = InicioSesión.cine.getSistemaUsuarios().buscarCliente(u);
         lbl_usuario.setText(u.getUsuario());
         lbl_totalPuntos.setText(Integer.toString(c.getPuntos()));
         txt_Nombre.setText(c.getNombre());
@@ -300,9 +300,9 @@ public class InicioCliente extends javax.swing.JFrame {
     private void btn_CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarSesionActionPerformed
         try {
             // TODO add your handling code here:
-            InicioSesion.usuarioActual = null;
+            InicioSesión.usuarioActual = null;
             this.dispose();
-            InicioSesion inicioSesión = new InicioSesion();
+            InicioSesión inicioSesión = new InicioSesión();
             inicioSesión.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(InicioCliente.class.getName()).log(Level.SEVERE, null, ex);
@@ -330,14 +330,14 @@ public class InicioCliente extends javax.swing.JFrame {
     private void btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GuardarActionPerformed
         // TODO add your handling code here:
         String nueva = txt_NuevaContrasena.getText();
-        if(nueva.equals(InicioSesion.usuarioActual.getContraseña())) {
+        if(nueva.equals(InicioSesión.usuarioActual.getContraseña())) {
             lbl_Mensaje.setText("La contraseña no puede ser la misma que la anterior.");
         } else {
             lbl_Mensaje.setText("La contraseña se ha guardado correctamente.");
-            InicioSesion.usuarioActual.setContraseña(nueva);
-            int i = InicioSesion.cine.getSistemaUsuarios().buscarUsuarioID(InicioSesion.usuarioActual);
+            InicioSesión.usuarioActual.setContraseña(nueva);
+            int i = InicioSesión.cine.getSistemaUsuarios().buscarUsuarioID(InicioSesión.usuarioActual);
             try {
-                InicioSesion.cine.getSistemaUsuarios().actualizarUsuario(i, InicioSesion.usuarioActual);
+                InicioSesión.cine.getSistemaUsuarios().actualizarUsuario(i, InicioSesión.usuarioActual);
             } catch (IOException ex) {
                 Logger.getLogger(InicioCliente.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -345,7 +345,7 @@ public class InicioCliente extends javax.swing.JFrame {
             txt_NuevaContrasena.setVisible(false);
             btn_Guardar.setVisible(false);
             btn_Cancelar.setVisible(false);
-            txt_Contraseña.setText(InicioSesion.usuarioActual.getContraseña());
+            txt_Contraseña.setText(InicioSesión.usuarioActual.getContraseña());
         }
     }//GEN-LAST:event_btn_GuardarActionPerformed
 

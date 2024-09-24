@@ -11,7 +11,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import uam.mx.clases.Comida;
-import uam.mx.clases.Funcion;
+import uam.mx.clases.Función;
 
 /**
  *
@@ -36,7 +36,7 @@ public class Menu extends javax.swing.JFrame {
     
     public void llenarTabla(){ 
         DefaultTableModel modelo = new DefaultTableModel(new String[] {"Imagen", "Nombre", "Precio"}, 0);
-        ArrayList<Comida> lista = InicioSesion.cine.getMenu().getListaComidas();
+        ArrayList<Comida> lista = InicioSesión.cine.getMenu().getListaComidas();
         
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);

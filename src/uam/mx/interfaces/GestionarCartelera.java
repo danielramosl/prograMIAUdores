@@ -11,7 +11,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import uam.mx.clases.Funcion;
+import uam.mx.clases.Función;
 import uam.mx.clases.Pelicula;
 
 /**
@@ -35,7 +35,7 @@ public class GestionarCartelera extends javax.swing.JFrame {
     
     public void llenarPelícula() {
         cmb_Pelicula.removeAllItems();
-        ArrayList<Pelicula> al = InicioSesion.cine.getCartelera().getListaPelículas();
+        ArrayList<Pelicula> al = InicioSesión.cine.getCartelera().getListaPelículas();
         cmb_Pelicula.addItem("-Seleccionar-");
         for(Pelicula p : al) {
             cmb_Pelicula.addItem(p.getNombre());
@@ -70,7 +70,7 @@ public class GestionarCartelera extends javax.swing.JFrame {
             lt = lt.plusHours(3);
             LocalDateTime ldt = LocalDateTime.of(ld, lt);
             if(ldt.isAfter(LocalDateTime.now())) {
-                if(InicioSesion.cine.getCartelera().horarioFunciónDisponible(cmb_Sala.getSelectedIndex(), ld, lt) == true) {
+                if(InicioSesión.cine.getCartelera().horarioFunciónDisponible(cmb_Sala.getSelectedIndex(), ld, lt) == true) {
                     cmb_Horario.addItem(lt.toString());
                 }
             }
@@ -134,6 +134,11 @@ public class GestionarCartelera extends javax.swing.JFrame {
         btn_Regresar.setText("Regresar");
         btn_Regresar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_Regresar.setBorderPainted(false);
+        btn_Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RegresarActionPerformed(evt);
+            }
+        });
 
         lbl_Usuario.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         lbl_Usuario.setText("Administrador");
@@ -397,7 +402,7 @@ public class GestionarCartelera extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(cmb_Pelicula.getSelectedIndex() > 0) {
             int id = cmb_Pelicula.getSelectedIndex() - 1;
-            Pelicula p = InicioSesion.cine.getCartelera().getListaPelículas().get(id);
+            Pelicula p = InicioSesión.cine.getCartelera().getListaPelículas().get(id);
             lbl_TituloPelicula.setText(p.getNombre());
             lbl_DescripcionPelicula.setText("<html>" + p.getDescripción() + "</html>");
             lbl_ClasificacionPelicula.setText(p.getClasificación());
@@ -425,20 +430,24 @@ public class GestionarCartelera extends javax.swing.JFrame {
 
     private void btn_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarActionPerformed
         // TODO add your handling code here:
-        int id = InicioSesion.cine.getCartelera().nuevoIdFunción();
         int id_película = cmb_Pelicula.getSelectedIndex() - 1;
-        int id_sala = cmb_Sala.getSelectedIndex() - 1;
+        int id_sala = cmb_Sala.getSelectedIndex();
         LocalDate fecha = LocalDate.parse((String)cmb_Fecha.getSelectedItem());
         LocalTime horario = LocalTime.parse((String)cmb_Horario.getSelectedItem());
         int formato = cmb_Formato.getSelectedIndex();
-        Funcion f = new Funcion(id, id_película, id_sala, fecha, horario, formato);
         try {
-            InicioSesion.cine.getCartelera().nuevaFunción(f);
+            InicioSesión.cine.getCartelera().nuevaFunción(id_película, fecha, horario, formato, id_sala);
         } catch (IOException ex) {
             Logger.getLogger(GestionarCartelera.class.getName()).log(Level.SEVERE, null, ex);
         }
         lbl_Mensaje.setText("La función se agregó con éxito");
     }//GEN-LAST:event_btn_AgregarActionPerformed
+
+    private void btn_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegresarActionPerformed
+        this.dispose();
+        InicioAdministrador ia = new InicioAdministrador();
+        ia.setVisible(true);
+    }//GEN-LAST:event_btn_RegresarActionPerformed
 
     /**
      * @param args the command line arguments

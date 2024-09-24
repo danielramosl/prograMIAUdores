@@ -50,6 +50,11 @@ public class Cliente {
     public int getPuntos() {
         return puntos;
     }
+
+    @Override
+    public String toString() {
+        return id + "," + id_usuario + "," + nombre + "," + fechaNacimiento + "," + correo + "," + puntos + '\n';
+    }
     
     
 }

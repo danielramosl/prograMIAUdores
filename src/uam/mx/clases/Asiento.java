@@ -9,11 +9,17 @@ package uam.mx.clases;
  * @author PrograMIAUdores
  */
 public class Asiento {
-    private String id;
+    private int id;
     private Boolean ocupado;
 
-    public Asiento(String id, Boolean ocupado) {
+    public Asiento(int id, Boolean ocupado) {
         this.id = id;
         this.ocupado = ocupado;
     }
+
+    public Boolean getOcupado() {
+        return ocupado;
+    }
+    
+    
 }

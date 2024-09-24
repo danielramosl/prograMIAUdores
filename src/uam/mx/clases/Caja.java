@@ -20,8 +20,6 @@ public class Caja {
     }
 
     public void NuevaVenta() {
-        Venta venta = new Venta();
-        //Cosas
-        listaVentas.add(venta);
+        
     }
 }

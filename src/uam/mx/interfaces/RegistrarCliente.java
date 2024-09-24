@@ -4,6 +4,12 @@
  */
 package uam.mx.interfaces;
 
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import uam.mx.clases.Usuario;
+
 /**
  *
  * @author Laura
@@ -34,15 +40,21 @@ public class RegistrarCliente extends javax.swing.JFrame {
         lbl_Titulo = new javax.swing.JLabel();
         lbl_UsuarioCliente = new javax.swing.JLabel();
         lbl_Nombre = new javax.swing.JLabel();
-        txt_Contrasena = new javax.swing.JTextField();
+        txt_Contraseña = new javax.swing.JTextField();
         lbl_FechaNacimiento = new javax.swing.JLabel();
         lbl_Correo = new javax.swing.JLabel();
-        lbl_Contrasena = new javax.swing.JLabel();
-        txt_FechaNacimiento = new javax.swing.JTextField();
+        lbl_Contraseña = new javax.swing.JLabel();
+        txt_Día = new javax.swing.JTextField();
         txt_Nombre = new javax.swing.JTextField();
         txt_Correo = new javax.swing.JTextField();
-        txt_UsuarioCliente = new javax.swing.JTextField();
+        txt_Usuario = new javax.swing.JTextField();
         btn_Registrar = new javax.swing.JButton();
+        lbl_Día = new javax.swing.JLabel();
+        txt_Mes = new javax.swing.JTextField();
+        lbl_Mes = new javax.swing.JLabel();
+        txt_Año = new javax.swing.JTextField();
+        lbl_Año = new javax.swing.JLabel();
+        lbl_Mensaje = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,8 +86,8 @@ public class RegistrarCliente extends javax.swing.JFrame {
         lbl_Nombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_Nombre.setText("Nombre:");
 
-        txt_Contrasena.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txt_Contrasena.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        txt_Contraseña.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txt_Contraseña.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         lbl_FechaNacimiento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_FechaNacimiento.setText("Fecha de nacimiento:");
@@ -83,11 +95,11 @@ public class RegistrarCliente extends javax.swing.JFrame {
         lbl_Correo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_Correo.setText("Correo: ");
 
-        lbl_Contrasena.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lbl_Contrasena.setText("Contraseña:");
+        lbl_Contraseña.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbl_Contraseña.setText("Contraseña:");
 
-        txt_FechaNacimiento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txt_FechaNacimiento.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        txt_Día.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txt_Día.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         txt_Nombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_Nombre.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -95,8 +107,8 @@ public class RegistrarCliente extends javax.swing.JFrame {
         txt_Correo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_Correo.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        txt_UsuarioCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txt_UsuarioCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        txt_Usuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txt_Usuario.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         btn_Registrar.setBackground(new java.awt.Color(57, 105, 138));
         btn_Registrar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -104,6 +116,28 @@ public class RegistrarCliente extends javax.swing.JFrame {
         btn_Registrar.setText("Registrar");
         btn_Registrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_Registrar.setBorderPainted(false);
+        btn_Registrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RegistrarActionPerformed(evt);
+            }
+        });
+
+        lbl_Día.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbl_Día.setText("Día:");
+
+        txt_Mes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txt_Mes.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        lbl_Mes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbl_Mes.setText("Mes:");
+
+        txt_Año.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txt_Año.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        lbl_Año.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbl_Año.setText("Año:");
+
+        lbl_Mensaje.setText("                                                            ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -111,30 +145,7 @@ public class RegistrarCliente extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(lbl_Usuario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(loguito)
-                        .addGap(15, 15, 15))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_FechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_Correo, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_UsuarioCliente)
-                    .addComponent(lbl_Contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_Contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_Correo, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_FechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_UsuarioCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addComponent(jSeparator1))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,20 +156,55 @@ public class RegistrarCliente extends javax.swing.JFrame {
                         .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(95, 95, 95))))
+                        .addGap(95, 95, 95))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(lbl_Usuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(loguito)
+                        .addGap(15, 15, 15))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(124, 124, 124)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_Mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_FechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_Correo, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_UsuarioCliente)
+                            .addComponent(lbl_Contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_Contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_Correo, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lbl_Día, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_Día, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbl_Mes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_Mes, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbl_Año, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txt_Año)))))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(loguito)
-                        .addGap(12, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lbl_Usuario)
-                        .addGap(41, 41, 41)))
+                        .addGap(41, 41, 41))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(loguito)
+                        .addGap(12, 12, 12)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60)
                 .addComponent(lbl_Titulo)
@@ -169,20 +215,27 @@ public class RegistrarCliente extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_FechaNacimiento)
-                    .addComponent(txt_FechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_Día, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_Día)
+                    .addComponent(txt_Mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_Mes)
+                    .addComponent(txt_Año, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_Año))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_Correo)
                     .addComponent(txt_Correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_UsuarioCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_UsuarioCliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_Contrasena)
-                    .addComponent(txt_Contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(99, 99, 99)
+                    .addComponent(lbl_Contraseña)
+                    .addComponent(txt_Contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54)
+                .addComponent(lbl_Mensaje)
+                .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -208,6 +261,23 @@ public class RegistrarCliente extends javax.swing.JFrame {
        InicioVentaBoletos inicioVentaBoletos = new InicioVentaBoletos();
        inicioVentaBoletos.setVisible(true);
     }//GEN-LAST:event_btn_CancelarActionPerformed
+
+    private void btn_RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistrarActionPerformed
+        // TODO add your handling code here:
+        if(InicioSesión.cine.getSistemaUsuarios().usuarioExiste(txt_Usuario.getText())) {
+            lbl_Mensaje.setText("El usuario ya existe.");
+        } else {
+            try {
+                int usuario_id = InicioSesión.cine.getSistemaUsuarios().crearUsuario(txt_Usuario.getText(), txt_Contraseña.getText());
+                String fecha = txt_Año.getText() + "-" + txt_Mes.getText() + "-" + txt_Día.getText();
+                LocalDate fechaNacimiento = LocalDate.parse(fecha);
+                InicioSesión.cine.getSistemaUsuarios().crearCliente(usuario_id, txt_Nombre.getText(), fechaNacimiento, txt_Correo.getText());
+                lbl_Mensaje.setText("Usuario creado correctamente.");
+            } catch (IOException ex) {
+                Logger.getLogger(RegistrarCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btn_RegistrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,18 +319,24 @@ public class RegistrarCliente extends javax.swing.JFrame {
     private javax.swing.JButton btn_Registrar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lbl_Contrasena;
+    private javax.swing.JLabel lbl_Año;
+    private javax.swing.JLabel lbl_Contraseña;
     private javax.swing.JLabel lbl_Correo;
+    private javax.swing.JLabel lbl_Día;
     private javax.swing.JLabel lbl_FechaNacimiento;
+    private javax.swing.JLabel lbl_Mensaje;
+    private javax.swing.JLabel lbl_Mes;
     private javax.swing.JLabel lbl_Nombre;
     private javax.swing.JLabel lbl_Titulo;
     private javax.swing.JLabel lbl_Usuario;
     private javax.swing.JLabel lbl_UsuarioCliente;
     private javax.swing.JLabel loguito;
-    private javax.swing.JTextField txt_Contrasena;
+    private javax.swing.JTextField txt_Año;
+    private javax.swing.JTextField txt_Contraseña;
     private javax.swing.JTextField txt_Correo;
-    private javax.swing.JTextField txt_FechaNacimiento;
+    private javax.swing.JTextField txt_Día;
+    private javax.swing.JTextField txt_Mes;
     private javax.swing.JTextField txt_Nombre;
-    private javax.swing.JTextField txt_UsuarioCliente;
+    private javax.swing.JTextField txt_Usuario;
     // End of variables declaration//GEN-END:variables
 }

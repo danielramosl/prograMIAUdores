@@ -85,6 +85,11 @@ public class InicioAdministrador extends javax.swing.JFrame {
         btn_CerrarSesion.setText("Cerrar sesión");
         btn_CerrarSesion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_CerrarSesion.setBorderPainted(false);
+        btn_CerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CerrarSesionActionPerformed(evt);
+            }
+        });
 
         camara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imagenes/camara.png"))); // NOI18N
 
@@ -188,6 +193,17 @@ public class InicioAdministrador extends javax.swing.JFrame {
         GestionarCartelera gc = new GestionarCartelera();
         gc.setVisible(true);
     }//GEN-LAST:event_btn_GestionarCarteleraActionPerformed
+
+    private void btn_CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarSesionActionPerformed
+        try {
+            this.dispose();
+            InicioSesión.usuarioActual = null;
+            InicioSesión is = new InicioSesión();
+            is.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(InicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btn_CerrarSesionActionPerformed
 
     /**
      * @param args the command line arguments

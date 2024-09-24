@@ -12,7 +12,7 @@ import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-import uam.mx.clases.Funcion;
+import uam.mx.clases.Función;
 import uam.mx.clases.Pelicula;
 import javax.swing.table.DefaultTableModel;
 
@@ -43,15 +43,15 @@ public class Cartelera extends javax.swing.JFrame {
         LocalDate fechaSeleccionada = selectedDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         
         DefaultTableModel modelo = new DefaultTableModel(new String[] {"Portada", "Título", "Duración", "Clasificación", "Sala", "Horario", "Formato"}, 0);
-        ArrayList<Funcion> lista = InicioSesion.cine.getCartelera().getListaFunciones();
-        ArrayList<Pelicula> peliculas = InicioSesion.cine.getCartelera().getListaPelículas();
+        ArrayList<Función> lista = InicioSesión.cine.getCartelera().getListaFunciones();
+        ArrayList<Pelicula> peliculas = InicioSesión.cine.getCartelera().getListaPelículas();
         
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         
         try {
             
-            for (Funcion funcion : lista){
+            for (Función funcion : lista){
                 if (funcion.getFecha().equals(fechaSeleccionada)) {
                 JLabel portada = new JLabel();
                 int id_pelicula = funcion.getId_película();
@@ -63,7 +63,7 @@ public class Cartelera extends javax.swing.JFrame {
                         peliculas.get(id_pelicula).getNombre(), 
                         peliculas.get(id_pelicula).getDuración(), 
                         peliculas.get(id_pelicula).getClasificación(), 
-                        funcion.getId_sala(), 
+                        funcion.getSsala().getID(), 
                         funcion.getHorario(), 
                         formatoToString(funcion.getFormato())
                     });

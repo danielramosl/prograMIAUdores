@@ -23,7 +23,7 @@ public class NuevaVentaComida extends javax.swing.JFrame {
     }
     public void llenarPelícula() {
         cmb_Comida.removeAllItems();
-        ArrayList<Comida> al = InicioSesion.cine.getMenu().getListaComidas();
+        ArrayList<Comida> al = InicioSesión.cine.getMenu().getListaComidas();
         cmb_Comida.addItem("-Seleccionar-");
         for(Comida c : al) {
             cmb_Comida.addItem(c.getNombre());
@@ -467,7 +467,7 @@ public class NuevaVentaComida extends javax.swing.JFrame {
     private void cmb_ComidaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_ComidaItemStateChanged
         if(cmb_Comida.getSelectedIndex() > 0) {
             int id = cmb_Comida.getSelectedIndex() - 1;
-            Comida c = InicioSesion.cine.getMenu().getListaComidas().get(id);
+            Comida c = InicioSesión.cine.getMenu().getListaComidas().get(id);
             lbl_NombreComida.setText(c.getNombre());
             lbl_CostoComida.setText(Integer.toString((int) c.getPrecio()));
             lbl_ComidaFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource(c.getPortada())));

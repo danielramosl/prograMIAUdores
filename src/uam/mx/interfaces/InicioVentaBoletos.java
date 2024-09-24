@@ -189,9 +189,9 @@ public class InicioVentaBoletos extends javax.swing.JFrame {
     private void btn_CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarSesionActionPerformed
            try {
             // TODO add your handling code here:
-            InicioSesion.usuarioActual = null;
+            InicioSesión.usuarioActual = null;
             this.dispose();
-            InicioSesion inicioSesión = new InicioSesion();
+            InicioSesión inicioSesión = new InicioSesión();
             inicioSesión.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(InicioCliente.class.getName()).log(Level.SEVERE, null, ex);

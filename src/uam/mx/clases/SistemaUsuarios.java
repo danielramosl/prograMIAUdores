@@ -126,6 +126,54 @@ public class SistemaUsuarios {
         return -1;
     }
     
+    public Boolean usuarioExiste(String usuario) {
+        for(Usuario u : listaUsuarios) {
+            if(u.getUsuario().equals(usuario)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public int crearUsuario(String usuario, String contraseña) throws IOException {
+        int i = nuevoUsuarioID();
+        Usuario u = new Usuario(i, usuario, contraseña);
+        listaUsuarios.add(u);
+        FileWriter fw = new FileWriter("src/uam/mx/datos/usuarios.dat");
+        BufferedWriter bw = new BufferedWriter(fw);
+        String nueva = "";
+        for(Usuario us : listaUsuarios) {
+            nueva += us.toString();
+        }
+        bw.write(nueva);
+        bw.close();
+        fw.close();
+        return i;
+    }
+    
+    public void crearCliente(int usuario_id, String nombre, LocalDate fechaNacimiento, String correo) throws IOException {
+        int id = nuevoClienteID();
+        Cliente c = new Cliente(id, usuario_id, nombre, fechaNacimiento, correo, 0);
+        listaClientes.add(c);
+        FileWriter fw = new FileWriter("src/uam/mx/datos/clientes.dat");
+        BufferedWriter bw = new BufferedWriter(fw);
+        String nueva = "";
+        for(Cliente cl : listaClientes) {
+            nueva += cl.toString();
+        }
+        bw.write(nueva);
+        bw.close();
+        fw.close();
+    }
+    
+    private int nuevoClienteID() {
+        return listaClientes.getLast().getId() + 1;
+    }
+    
+    private int nuevoUsuarioID() {
+        return listaUsuarios.getLast().getId() + 1;
+    }
+    
     public void actualizarUsuario(int i, Usuario u) throws IOException {
         listaUsuarios.set(i, u);
         FileWriter fw = new FileWriter("src/uam/mx/datos/usuarios.dat");
@@ -150,5 +198,22 @@ public class SistemaUsuarios {
 
     public ArrayList<Empleado> getListaEmpleados() {
         return listaEmpleados;
+    }
+    
+    public Empleado getEmpleadoLista(int index) {
+        return listaEmpleados.get(index);
+    }
+    
+    public void actualizarEmpleado(int i, Empleado e) throws IOException {
+        listaEmpleados.set(i, e);
+        FileWriter fw = new FileWriter("src/uam/mx/datos/empleados.dat");
+        BufferedWriter bw = new BufferedWriter(fw);
+        String nueva = "";
+        for(Empleado em : listaEmpleados) {
+            nueva += em.toString();
+        }
+        bw.write(nueva);
+        bw.close();
+        fw.close();
     }
 }
