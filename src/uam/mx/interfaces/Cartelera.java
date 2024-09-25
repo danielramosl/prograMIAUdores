@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import uam.mx.clases.Función;
-import uam.mx.clases.Pelicula;
+import uam.mx.clases.Película;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -44,7 +44,7 @@ public class Cartelera extends javax.swing.JFrame {
         
         DefaultTableModel modelo = new DefaultTableModel(new String[] {"Portada", "Título", "Duración", "Clasificación", "Sala", "Horario", "Formato"}, 0);
         ArrayList<Función> lista = InicioSesión.cine.getCartelera().getListaFunciones();
-        ArrayList<Pelicula> peliculas = InicioSesión.cine.getCartelera().getListaPelículas();
+        ArrayList<Película> peliculas = InicioSesión.cine.getCartelera().getListaPelículas();
         
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
@@ -63,7 +63,7 @@ public class Cartelera extends javax.swing.JFrame {
                         peliculas.get(id_pelicula).getNombre(), 
                         peliculas.get(id_pelicula).getDuración(), 
                         peliculas.get(id_pelicula).getClasificación(), 
-                        funcion.getSsala().getID(), 
+                        funcion.getSala().getID(), 
                         funcion.getHorario(), 
                         formatoToString(funcion.getFormato())
                     });

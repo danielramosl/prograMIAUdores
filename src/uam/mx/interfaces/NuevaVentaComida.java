@@ -6,7 +6,7 @@ package uam.mx.interfaces;
 
 import java.util.ArrayList;
 import uam.mx.clases.Comida;
-import uam.mx.clases.Pelicula;
+import uam.mx.clases.Película;
 
 /**
  *

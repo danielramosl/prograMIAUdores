@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import uam.mx.clases.Función;
-import uam.mx.clases.Pelicula;
+import uam.mx.clases.Película;
 
 /**
  *
@@ -35,9 +35,9 @@ public class GestionarCartelera extends javax.swing.JFrame {
     
     public void llenarPelícula() {
         cmb_Pelicula.removeAllItems();
-        ArrayList<Pelicula> al = InicioSesión.cine.getCartelera().getListaPelículas();
+        ArrayList<Película> al = InicioSesión.cine.getCartelera().getListaPelículas();
         cmb_Pelicula.addItem("-Seleccionar-");
-        for(Pelicula p : al) {
+        for(Película p : al) {
             cmb_Pelicula.addItem(p.getNombre());
         }
     }
@@ -402,7 +402,7 @@ public class GestionarCartelera extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(cmb_Pelicula.getSelectedIndex() > 0) {
             int id = cmb_Pelicula.getSelectedIndex() - 1;
-            Pelicula p = InicioSesión.cine.getCartelera().getListaPelículas().get(id);
+            Película p = InicioSesión.cine.getCartelera().getListaPelículas().get(id);
             lbl_TituloPelicula.setText(p.getNombre());
             lbl_DescripcionPelicula.setText("<html>" + p.getDescripción() + "</html>");
             lbl_ClasificacionPelicula.setText(p.getClasificación());
@@ -434,7 +434,7 @@ public class GestionarCartelera extends javax.swing.JFrame {
         int id_sala = cmb_Sala.getSelectedIndex();
         LocalDate fecha = LocalDate.parse((String)cmb_Fecha.getSelectedItem());
         LocalTime horario = LocalTime.parse((String)cmb_Horario.getSelectedItem());
-        int formato = cmb_Formato.getSelectedIndex();
+        int formato = cmb_Formato.getSelectedIndex() - 1;
         try {
             InicioSesión.cine.getCartelera().nuevaFunción(id_película, fecha, horario, formato, id_sala);
         } catch (IOException ex) {

@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -21,20 +22,20 @@ import java.util.StringTokenizer;
  */
 public class Cartelera {
     private ArrayList<Función> listaFunciones;
-    private ArrayList<Pelicula> listaPelículas;
-    private LocalDate fecha;
+    private ArrayList<Película> listaPelículas;
+    private LocalDateTime ldt;
 
     public Cartelera() throws IOException {
+        ldt = LocalDateTime.now();
         listaFunciones = new ArrayList<>();
         leerFunciones();
         listaPelículas = new ArrayList<>();
         leerPelículas();
-        fecha = LocalDate.now();
     }
     
     public Boolean horarioFunciónDisponible(int id_sala, LocalDate fecha, LocalTime horario) {
         for(Función f : listaFunciones) {
-            if(f.getSsala().getID() == id_sala && fecha.equals(f.getFecha()) && horario.equals(f.getHorario())) {
+            if(f.getSala().getID() == id_sala && fecha.equals(f.getFecha()) && horario.equals(f.getHorario())) {
                 return false;
             }
         }
@@ -56,7 +57,9 @@ public class Cartelera {
             int id_sala = Integer.parseInt(st.nextToken());
             Sala sala = new Sala(id_sala,st.nextToken());
             Función f = new Función(id, id_película, fecha, horario, formato, sala);
-            listaFunciones.add(f);
+            if(ldt.isBefore(LocalDateTime.of(f.getFecha(), f.getHorario()))) {
+                listaFunciones.add(f);
+            }
             s = br.readLine();
         }
         br.close();
@@ -76,7 +79,7 @@ public class Cartelera {
             String clasificación = st.nextToken();
             String portada = st.nextToken().replace("\"", "");
             String portada2 = st.nextToken().replace("\"", "");
-            Pelicula p = new Pelicula(id, nombre, descripción, duración, clasificación, portada, portada2);
+            Película p = new Película(id, nombre, descripción, duración, clasificación, portada, portada2);
             listaPelículas.add(p);
             s = br.readLine();
         }
@@ -114,12 +117,19 @@ public class Cartelera {
         fw.close();
     }
     
-    public ArrayList<Pelicula> getListaPelículas() {
+    public ArrayList<Película> getListaPelículas() {
         return listaPelículas;
     }
     
     public ArrayList<Función> getListaFunciones(){
         return listaFunciones;
     }
- 
+    
+    public String formato(int i) {
+        if(i == 0) {
+            return "2D";
+        } else {
+            return "3D";
+        }
+    }
 }

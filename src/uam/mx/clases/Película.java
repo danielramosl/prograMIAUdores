@@ -9,7 +9,7 @@ import java.time.Duration;
  *
  * @author PrograMIAUdores
  */
-public class Pelicula {
+public class Película {
     private int id;
     private String nombre;
     private String descripción;
@@ -18,7 +18,7 @@ public class Pelicula {
     String portada;
     String portada2;
 
-    public Pelicula(int id, String nombre, String descripción, int duración, String clasificación, String portada, String portada2) {
+    public Película(int id, String nombre, String descripción, int duración, String clasificación, String portada, String portada2) {
         this.id = id;
         this.nombre = nombre;
         this.descripción = descripción;

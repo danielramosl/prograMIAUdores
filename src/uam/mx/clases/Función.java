@@ -51,7 +51,7 @@ public class Función {
         return id;
     }
     
-    public Sala getSsala() {
+    public Sala getSala() {
         return sala;
     }
 

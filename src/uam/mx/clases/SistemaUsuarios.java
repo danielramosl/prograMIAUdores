@@ -216,4 +216,36 @@ public class SistemaUsuarios {
         bw.close();
         fw.close();
     }
+    
+    public void eliminarEmpleado(int i) throws IOException {
+        eliminarUsuario(listaEmpleados.get(i).getId_usuario());
+        listaEmpleados.remove(i);
+        FileWriter fw = new FileWriter("src/uam/mx/datos/empleados.dat");
+        BufferedWriter bw = new BufferedWriter(fw);
+        String nueva = "";
+        for(Empleado em : listaEmpleados) {
+            nueva += em.toString();
+        }
+        bw.write(nueva);
+        bw.close();
+        fw.close();
+    }
+    
+    public void eliminarUsuario(int id) throws IOException {
+        for(int i = 0; i < listaUsuarios.size(); ++i) {
+            if(listaUsuarios.get(i).getId() == id) {
+                listaUsuarios.remove(i);
+                break;
+            }
+        }
+        FileWriter fw = new FileWriter("src/uam/mx/datos/usuarios.dat");
+        BufferedWriter bw = new BufferedWriter(fw);
+        String nueva = "";
+        for(Usuario u : listaUsuarios) {
+            nueva += u.toString();
+        }
+        bw.write(nueva);
+        bw.close();
+        fw.close();
+    }
 }

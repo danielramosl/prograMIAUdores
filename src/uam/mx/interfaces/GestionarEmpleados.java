@@ -63,8 +63,8 @@ public final class GestionarEmpleados extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lbl_TituloEliminar = new javax.swing.JLabel();
         lbl_EliminarPregunta = new javax.swing.JLabel();
-        btn_Cancelar = new javax.swing.JButton();
         btn_Eliminar = new javax.swing.JButton();
+        btn_Cancelar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         cmb_Empleado = new javax.swing.JComboBox<>();
         loguito = new javax.swing.JLabel();
@@ -94,19 +94,29 @@ public final class GestionarEmpleados extends javax.swing.JFrame {
         lbl_EliminarPregunta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbl_EliminarPregunta.setText("¿Deseas eliminar el empleado seleccionado?");
 
-        btn_Cancelar.setBackground(new java.awt.Color(143, 29, 32));
-        btn_Cancelar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btn_Cancelar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Cancelar.setText("Eliminar");
-        btn_Cancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_Cancelar.setBorderPainted(false);
-
-        btn_Eliminar.setBackground(new java.awt.Color(102, 102, 102));
+        btn_Eliminar.setBackground(new java.awt.Color(143, 29, 32));
         btn_Eliminar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         btn_Eliminar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Eliminar.setText("Cancelar");
+        btn_Eliminar.setText("Eliminar");
         btn_Eliminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_Eliminar.setBorderPainted(false);
+        btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EliminarActionPerformed(evt);
+            }
+        });
+
+        btn_Cancelar.setBackground(new java.awt.Color(102, 102, 102));
+        btn_Cancelar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btn_Cancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Cancelar.setText("Cancelar");
+        btn_Cancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_Cancelar.setBorderPainted(false);
+        btn_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -114,9 +124,9 @@ public final class GestionarEmpleados extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
@@ -134,8 +144,8 @@ public final class GestionarEmpleados extends javax.swing.JFrame {
                 .addComponent(lbl_EliminarPregunta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
 
@@ -442,6 +452,22 @@ public final class GestionarEmpleados extends javax.swing.JFrame {
         InicioAdministrador ia = new InicioAdministrador();
         ia.setVisible(true);
     }//GEN-LAST:event_btn_RegresarActionPerformed
+
+    private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
+        try {
+            // TODO add your handling code here:
+            int index = cmb_Empleado.getSelectedIndex();
+            InicioSesión.cine.getSistemaUsuarios().eliminarEmpleado(index);
+            dlg_EliminarEmpleado.dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(GestionarEmpleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btn_EliminarActionPerformed
+
+    private void btn_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CancelarActionPerformed
+        // TODO add your handling code here:
+        dlg_EliminarEmpleado.dispose();
+    }//GEN-LAST:event_btn_CancelarActionPerformed
 
     /**
      * @param args the command line arguments

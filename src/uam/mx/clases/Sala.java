@@ -47,4 +47,8 @@ public final class Sala {
         }
         return s;
     }
+
+    public ArrayList<Asiento> getAsientos() {
+        return asientos;
+    }
 }
