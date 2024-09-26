@@ -132,4 +132,24 @@ public class Cartelera {
             return "3D";
         }
     }
+    
+    public void actualizarSala(Función f) throws IOException {
+        int index = 0;
+        for(int i = 0; i < listaFunciones.size(); ++i) {
+            if(f.getId() == listaFunciones.get(i).getId()) {
+                index = i;
+                break;
+            }
+        }
+        listaFunciones.remove(index);
+        listaFunciones.add(f);
+        FileWriter fw = new FileWriter("src/uam/mx/datos/funciones.dat");
+        BufferedWriter bw = new BufferedWriter(fw);
+        String nueva = "";
+        for(Función fn : listaFunciones) {
+            nueva += fn.toString();
+        }
+        bw.write(nueva);
+        bw.close();
+    }
 }

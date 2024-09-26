@@ -51,6 +51,10 @@ public class Cliente {
         return puntos;
     }
 
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
+    }
+
     @Override
     public String toString() {
         return id + "," + id_usuario + "," + nombre + "," + fechaNacimiento + "," + correo + "," + puntos + '\n';

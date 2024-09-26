@@ -4,16 +4,28 @@
  */
 package uam.mx.interfaces;
 
+import java.awt.Color;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import uam.mx.clases.Cliente;
 import uam.mx.clases.Función;
 import uam.mx.clases.Película;
+import uam.mx.clases.Usuario;
+import uam.mx.clases.Venta;
 
 /**
  *
  * @author Laura
  */
-public class NuevaVentaBoletos extends javax.swing.JFrame {
-
+public final class NuevaVentaBoletos extends javax.swing.JFrame {
+    Función función;
+    Cliente cliente;
+    float total;
+    Integer puntosAñadidos;
+    Boolean f = false;
     /**
      * Creates new form NuevaVentaBoletos
      */
@@ -21,6 +33,24 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
         initComponents();
         llenarFunciones();
         cmb_Asiento.removeAllItems();
+        txt_NombreCliente.setEditable(false);
+        txt_NombreCliente.setCaretColor(Color.white);
+        llenarDescuento();
+        llenarTipoPago();
+    }
+    
+    public void llenarTipoPago() {
+        cmb_TipoPago.removeAllItems();
+        cmb_TipoPago.addItem("-Seleccionar-");
+        cmb_TipoPago.addItem("Efectivo");
+        cmb_TipoPago.addItem("Tarjeta");
+    }
+    
+    private void llenarDescuento() {
+        cmb_Descuento.removeAllItems();
+        cmb_Descuento.addItem("-Seleccionar-");
+        cmb_Descuento.addItem("Puntos");
+        cmb_Descuento.addItem("No aplicar");
     }
     
     private void llenarFunciones() {
@@ -41,7 +71,7 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
         cmb_Asiento.addItem("-Seleccionar-");
         for(int i = 0; i < f.getSala().getAsientos().size(); ++i) {
             if(f.getSala().getAsientos().get(i).getOcupado() == false) {
-                cmb_Asiento.addItem(f.getSala().getID() + "-" + i);
+                cmb_Asiento.addItem(f.getSala().getID() + "-" + f.getSala().getAsientos().get(i).getId());
             }
         }
     }
@@ -67,6 +97,13 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
         txt_NumTarjeta = new javax.swing.JTextField();
         btn_Continuar = new javax.swing.JButton();
         btn_Cancelar = new javax.swing.JButton();
+        dlg_MIAUchisimasGracias = new javax.swing.JDialog();
+        jp_PagoTarjeta1 = new javax.swing.JPanel();
+        lbl_PagoTarjeta1 = new javax.swing.JLabel();
+        lbl_NumTarjeta1 = new javax.swing.JLabel();
+        txt_Puntos = new javax.swing.JTextField();
+        btn_Continuar1 = new javax.swing.JButton();
+        lbl_Username = new javax.swing.JLabel();
         jp_Principal = new javax.swing.JPanel();
         btn_Regresar = new javax.swing.JButton();
         loguito = new javax.swing.JLabel();
@@ -107,6 +144,9 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
         lbl_SubtotalT = new javax.swing.JLabel();
         btn_CompletarVenta = new javax.swing.JButton();
         btn_SeleccionarAsientos = new javax.swing.JButton();
+        btn_SeleccionarAsientos1 = new javax.swing.JButton();
+        lbl_Actuales = new javax.swing.JLabel();
+        lbl_PuntosActuales = new javax.swing.JLabel();
 
         jp_PagoTarjeta.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -219,6 +259,73 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
             .addComponent(jp_PagoTarjeta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jp_PagoTarjeta1.setBackground(new java.awt.Color(255, 255, 255));
+
+        lbl_PagoTarjeta1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        lbl_PagoTarjeta1.setText("MIAUchísimas gracias por tu compra");
+
+        lbl_NumTarjeta1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbl_NumTarjeta1.setText("Puntos actuales:");
+
+        txt_Puntos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txt_Puntos.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        btn_Continuar1.setBackground(new java.awt.Color(57, 105, 138));
+        btn_Continuar1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btn_Continuar1.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Continuar1.setText("Continuar");
+        btn_Continuar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_Continuar1.setBorderPainted(false);
+
+        lbl_Username.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+
+        javax.swing.GroupLayout jp_PagoTarjeta1Layout = new javax.swing.GroupLayout(jp_PagoTarjeta1);
+        jp_PagoTarjeta1.setLayout(jp_PagoTarjeta1Layout);
+        jp_PagoTarjeta1Layout.setHorizontalGroup(
+            jp_PagoTarjeta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jp_PagoTarjeta1Layout.createSequentialGroup()
+                .addContainerGap(68, Short.MAX_VALUE)
+                .addGroup(jp_PagoTarjeta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_Continuar1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jp_PagoTarjeta1Layout.createSequentialGroup()
+                        .addComponent(lbl_NumTarjeta1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_Puntos, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 69, Short.MAX_VALUE))
+            .addGroup(jp_PagoTarjeta1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jp_PagoTarjeta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_Username)
+                    .addComponent(lbl_PagoTarjeta1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jp_PagoTarjeta1Layout.setVerticalGroup(
+            jp_PagoTarjeta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jp_PagoTarjeta1Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(lbl_PagoTarjeta1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbl_Username)
+                .addGap(19, 19, 19)
+                .addGroup(jp_PagoTarjeta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_Puntos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_NumTarjeta1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_Continuar1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(147, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout dlg_MIAUchisimasGraciasLayout = new javax.swing.GroupLayout(dlg_MIAUchisimasGracias.getContentPane());
+        dlg_MIAUchisimasGracias.getContentPane().setLayout(dlg_MIAUchisimasGraciasLayout);
+        dlg_MIAUchisimasGraciasLayout.setHorizontalGroup(
+            dlg_MIAUchisimasGraciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jp_PagoTarjeta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        dlg_MIAUchisimasGraciasLayout.setVerticalGroup(
+            dlg_MIAUchisimasGraciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jp_PagoTarjeta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jp_Principal.setBackground(new java.awt.Color(255, 255, 255));
@@ -241,12 +348,16 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
         lbl_Usuario.setText("Vendedor de taquilla");
 
         lbl_listaAsientosSeleccionados.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lbl_listaAsientosSeleccionados.setText("listaAsientosSeleccionados");
 
         cmb_Asiento.setBackground(java.awt.SystemColor.control);
         cmb_Asiento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cmb_Asiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmb_Asiento.setBorder(null);
+        cmb_Asiento.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmb_AsientoItemStateChanged(evt);
+            }
+        });
 
         jp_DatosFuncion.setBackground(new java.awt.Color(57, 105, 138));
         jp_DatosFuncion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -381,7 +492,7 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
         txt_NombreCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         lbl_CambioPuntos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lbl_CambioPuntos.setText("Cambio/Puntos:");
+        lbl_CambioPuntos.setText("Puntos añadidos:");
 
         cmb_Función.setBackground(java.awt.SystemColor.control);
         cmb_Función.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -398,7 +509,6 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
         lbl_TotalT.setText("TOTAL:");
 
         lbl_Total.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lbl_Total.setText("total");
 
         lbl_TipoPago.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_TipoPago.setText("Tipo de pago:");
@@ -408,12 +518,16 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
         cmb_Descuento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmb_Descuento.setToolTipText("");
         cmb_Descuento.setBorder(null);
+        cmb_Descuento.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmb_DescuentoItemStateChanged(evt);
+            }
+        });
 
         lbl_Descuento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_Descuento.setText("Descuento:");
 
         lbl_Variables.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lbl_Variables.setText("cambio/puntos");
 
         sp_Cantidad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         sp_Cantidad.setBorder(null);
@@ -442,6 +556,11 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
         btn_CompletarVenta.setText("Completar venta");
         btn_CompletarVenta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_CompletarVenta.setBorderPainted(false);
+        btn_CompletarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CompletarVentaActionPerformed(evt);
+            }
+        });
 
         btn_SeleccionarAsientos.setBackground(new java.awt.Color(57, 105, 138));
         btn_SeleccionarAsientos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -454,6 +573,24 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
                 btn_SeleccionarAsientosActionPerformed(evt);
             }
         });
+
+        btn_SeleccionarAsientos1.setBackground(new java.awt.Color(57, 105, 138));
+        btn_SeleccionarAsientos1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btn_SeleccionarAsientos1.setForeground(new java.awt.Color(255, 255, 255));
+        btn_SeleccionarAsientos1.setText("Buscar");
+        btn_SeleccionarAsientos1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_SeleccionarAsientos1.setBorderPainted(false);
+        btn_SeleccionarAsientos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_SeleccionarAsientos1ActionPerformed(evt);
+            }
+        });
+
+        lbl_Actuales.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbl_Actuales.setText("Puntos actuales:");
+
+        lbl_PuntosActuales.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbl_PuntosActuales.setText("total");
 
         javax.swing.GroupLayout jp_PrincipalLayout = new javax.swing.GroupLayout(jp_Principal);
         jp_Principal.setLayout(jp_PrincipalLayout);
@@ -474,59 +611,69 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
                     .addGroup(jp_PrincipalLayout.createSequentialGroup()
                         .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jp_PrincipalLayout.createSequentialGroup()
-                                .addGap(0, 31, Short.MAX_VALUE)
-                                .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(jp_PrincipalLayout.createSequentialGroup()
-                                            .addComponent(lbl_Cantidad)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(sp_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(btn_SeleccionarAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(16, 16, 16)
-                                            .addComponent(lbl_SubtotalT)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(lbl_Subtotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jp_PrincipalLayout.createSequentialGroup()
-                                            .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(lbl_Asiento, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(lbl_SeleccionarFuncion, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(cmb_Función, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(cmb_Asiento, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addComponent(lbl_listaAsientosSeleccionados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jp_PrincipalLayout.createSequentialGroup()
-                                            .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(lbl_UsuarioCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(lbl_NombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txt_NombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txt_UsuarioCliente))))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jp_PrincipalLayout.createSequentialGroup()
+                                        .addGap(173, 173, 173)
+                                        .addComponent(lbl_PuntosActuales, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lbl_TotalT, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lbl_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(3, 3, 3))
+                                    .addGroup(jp_PrincipalLayout.createSequentialGroup()
+                                        .addComponent(lbl_TipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cmb_TipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jp_PrincipalLayout.createSequentialGroup()
+                                        .addComponent(lbl_CambioPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lbl_Variables, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(2, 2, 2))
+                            .addGroup(jp_PrincipalLayout.createSequentialGroup()
+                                .addGap(0, 31, Short.MAX_VALUE)
+                                .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_PrincipalLayout.createSequentialGroup()
+                                        .addComponent(lbl_Cantidad)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(sp_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btn_SeleccionarAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(16, 16, 16)
+                                        .addComponent(lbl_SubtotalT)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lbl_Subtotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jp_PrincipalLayout.createSequentialGroup()
+                                        .addComponent(lbl_listaAsientosSeleccionados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(170, 170, 170))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_PrincipalLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(lbl_Descuento, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cmb_Descuento, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jp_PrincipalLayout.createSequentialGroup()
-                                .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(cmb_Descuento, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jp_PrincipalLayout.createSequentialGroup()
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lbl_Variables, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jp_PrincipalLayout.createSequentialGroup()
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbl_Actuales, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(jp_PrincipalLayout.createSequentialGroup()
-                                                .addComponent(lbl_TotalT, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(lbl_Total, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(3, 3, 3))
-                                            .addGroup(jp_PrincipalLayout.createSequentialGroup()
-                                                .addComponent(lbl_TipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(lbl_Asiento, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(lbl_SeleccionarFuncion, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(cmb_TipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(lbl_CambioPuntos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(2, 2, 2)))
+                                                .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(cmb_Función, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(cmb_Asiento, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(jp_PrincipalLayout.createSequentialGroup()
+                                                .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(lbl_UsuarioCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(lbl_NombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(txt_NombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(jp_PrincipalLayout.createSequentialGroup()
+                                                        .addComponent(txt_UsuarioCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(btn_SeleccionarAsientos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addGap(10, 10, 10))
                     .addGroup(jp_PrincipalLayout.createSequentialGroup()
                         .addGap(152, 152, 152)
@@ -581,7 +728,8 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbl_UsuarioCliente)
-                            .addComponent(txt_UsuarioCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_UsuarioCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_SeleccionarAsientos1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txt_NombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -593,7 +741,10 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbl_TotalT)
-                            .addComponent(lbl_Total))
+                            .addComponent(lbl_Total)
+                            .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lbl_Actuales)
+                                .addComponent(lbl_PuntosActuales)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jp_PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbl_TipoPago)
@@ -633,17 +784,17 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(cmb_Función.getSelectedIndex() > 0) {
             int id = cmb_Función.getSelectedIndex() - 1;
-            Función f = InicioSesión.cine.getCartelera().getListaFunciones().get(id);
-            Película p = InicioSesión.cine.getCartelera().getListaPelículas().get(f.getId_película());
+            función = InicioSesión.cine.getCartelera().getListaFunciones().get(id);
+            Película p = InicioSesión.cine.getCartelera().getListaPelículas().get(función.getId_película());
             lbl_TituloPelicula.setText(p.getNombre());
             lbl_DescripcionPelicula.setText("<html>" + p.getDescripción() + "</html>");
             lbl_ClasificacionPelicula.setText(p.getClasificación());
-            lbl_SalaPelicula.setText("Sala " + f.getSala().getID());
-            lbl_DiaPelicula.setText(f.getFecha().toString());
-            lbl_HoraPelicula.setText(f.getHorario().toString());
+            lbl_SalaPelicula.setText("Sala " + función.getSala().getID());
+            lbl_DiaPelicula.setText(función.getFecha().toString());
+            lbl_HoraPelicula.setText(función.getHorario().toString());
             lbl_DuracionPelicula.setText(p.getDuración() + "min");
-            lbl_FormatoPelicula.setText(InicioSesión.cine.getCartelera().formato(f.getFormato()));
-            lbl_CostoPelicula.setText(Float.toString(f.getCostoBoleto()));
+            lbl_FormatoPelicula.setText(InicioSesión.cine.getCartelera().formato(función.getFormato()));
+            lbl_CostoPelicula.setText(Float.toString(función.getCostoBoleto()));
             lbl_Portada.setIcon(new javax.swing.ImageIcon(getClass().getResource(p.getPortada())));
         }
     }//GEN-LAST:event_cmb_FunciónItemStateChanged
@@ -669,11 +820,83 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
             lbl_Subtotal.setText("");
         } else {
             llenarAsientos();
-            Función f = InicioSesión.cine.getCartelera().getListaFunciones().get(cmb_Función.getSelectedIndex() - 1);
-            lbl_Subtotal.setText(Float.toString(sel * f.getCostoBoleto()));
+            total = sel * función.getCostoBoleto();
+            lbl_Subtotal.setText(Float.toString(total));
+            puntosAñadidos = 5 * sel;
+            lbl_Variables.setText(Integer.toString(puntosAñadidos));
             sp_Cantidad.setEnabled(false);
+            cmb_Función.setEnabled(false);
         }
     }//GEN-LAST:event_btn_SeleccionarAsientosActionPerformed
+
+    private void cmb_AsientoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_AsientoItemStateChanged
+        if((Integer)sp_Cantidad.getValue() == 0){
+            cmb_Asiento.removeAllItems();
+        } else if(cmb_Asiento.getSelectedIndex() > 0) {
+            String s = (String)cmb_Asiento.getSelectedItem();
+            StringTokenizer st = new StringTokenizer(s, "-");
+            st.nextToken();
+            int id = Integer.parseInt(st.nextToken()) - 1;
+            función.getSala().seleccionarAsiento(id);
+            String act = lbl_listaAsientosSeleccionados.getText();
+            if("".equals(act)) {
+                lbl_listaAsientosSeleccionados.setText(s);
+            } else {
+                lbl_listaAsientosSeleccionados.setText(act + ", " + s);
+            }
+            int valor = (Integer)sp_Cantidad.getValue() - 1;
+            sp_Cantidad.setValue(valor);
+            llenarAsientos();
+        }
+    }//GEN-LAST:event_cmb_AsientoItemStateChanged
+
+    private void btn_SeleccionarAsientos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SeleccionarAsientos1ActionPerformed
+        // TODO add your handling code here:
+        String user = txt_UsuarioCliente.getText();
+        int i = InicioSesión.cine.getSistemaUsuarios().buscarIDUsuario(user);
+        cliente = InicioSesión.cine.getSistemaUsuarios().buscarCliente(new Usuario(i, "", ""));
+        if(cliente != null) {
+            txt_NombreCliente.setText(cliente.getNombre());
+            lbl_PuntosActuales.setText(Integer.toString(cliente.getPuntos()));
+        }
+    }//GEN-LAST:event_btn_SeleccionarAsientos1ActionPerformed
+
+    private void cmb_DescuentoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_DescuentoItemStateChanged
+        // TODO add your handling code here:
+        if(cmb_Descuento.getSelectedIndex() > 0 && f == false) {
+            if(cmb_Descuento.getSelectedIndex() == 1) {
+                total -= (float)cliente.getPuntos();
+                if(total >= 0) {
+                    cliente.setPuntos(0);
+                } else {
+                    cliente.setPuntos((int) -total);
+                    total = 0;
+                }
+            }
+            lbl_PuntosActuales.setText(Integer.toString(cliente.getPuntos()));
+            lbl_Total.setText(Float.toString(total));
+            f = true;
+        }
+    }//GEN-LAST:event_cmb_DescuentoItemStateChanged
+
+    private void btn_CompletarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CompletarVentaActionPerformed
+        // TODO add your handling code here:
+        if(cmb_TipoPago.getSelectedIndex() == 1) {
+            try {
+                puntosAñadidos += cliente.getPuntos();
+                cliente.setPuntos(puntosAñadidos);
+                InicioSesión.cine.getCartelera().actualizarSala(función);
+                InicioSesión.cine.getSistemaUsuarios().actualizarCliente(cliente);
+                dlg_MIAUchisimasGracias.setSize(600, 320);
+                dlg_MIAUchisimasGracias.setLocationRelativeTo(this);
+                dlg_MIAUchisimasGracias.setVisible(true);
+                lbl_Username.setText(cliente.getNombre());
+                txt_Puntos.setText(Integer.toString(cliente.getPuntos()));
+            } catch (IOException ex) {
+                Logger.getLogger(NuevaVentaBoletos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btn_CompletarVentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -714,18 +937,23 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
     private javax.swing.JButton btn_Cancelar;
     private javax.swing.JButton btn_CompletarVenta;
     private javax.swing.JButton btn_Continuar;
+    private javax.swing.JButton btn_Continuar1;
     private javax.swing.JButton btn_Regresar;
     private javax.swing.JButton btn_SeleccionarAsientos;
+    private javax.swing.JButton btn_SeleccionarAsientos1;
     private javax.swing.JComboBox<String> cmb_Asiento;
     private javax.swing.JComboBox<String> cmb_Descuento;
     private javax.swing.JComboBox<String> cmb_Función;
     private javax.swing.JComboBox<String> cmb_TipoPago;
     private javax.swing.JComboBox<String> cmb_TipoTarjeta;
+    private javax.swing.JDialog dlg_MIAUchisimasGracias;
     private javax.swing.JDialog dlg_PagoTarjeta;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel jp_DatosFuncion;
     private javax.swing.JPanel jp_PagoTarjeta;
+    private javax.swing.JPanel jp_PagoTarjeta1;
     private javax.swing.JPanel jp_Principal;
+    private javax.swing.JLabel lbl_Actuales;
     private javax.swing.JLabel lbl_Asiento;
     private javax.swing.JLabel lbl_CambioPuntos;
     private javax.swing.JLabel lbl_Cantidad;
@@ -741,8 +969,11 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_NombreCliente;
     private javax.swing.JLabel lbl_NombreCompleto;
     private javax.swing.JLabel lbl_NumTarjeta;
+    private javax.swing.JLabel lbl_NumTarjeta1;
     private javax.swing.JLabel lbl_PagoTarjeta;
+    private javax.swing.JLabel lbl_PagoTarjeta1;
     private javax.swing.JLabel lbl_Portada;
+    private javax.swing.JLabel lbl_PuntosActuales;
     private javax.swing.JLabel lbl_SalaPelicula;
     private javax.swing.JLabel lbl_SeleccionarFuncion;
     private javax.swing.JLabel lbl_Subtotal;
@@ -753,6 +984,7 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_TituloPelicula;
     private javax.swing.JLabel lbl_Total;
     private javax.swing.JLabel lbl_TotalT;
+    private javax.swing.JLabel lbl_Username;
     private javax.swing.JLabel lbl_Usuario;
     private javax.swing.JLabel lbl_UsuarioCliente;
     private javax.swing.JLabel lbl_Variables;
@@ -762,6 +994,7 @@ public class NuevaVentaBoletos extends javax.swing.JFrame {
     private javax.swing.JTextField txt_NombreCliente;
     private javax.swing.JTextField txt_NombreCompleto;
     private javax.swing.JTextField txt_NumTarjeta;
+    private javax.swing.JTextField txt_Puntos;
     private javax.swing.JTextField txt_UsuarioCliente;
     // End of variables declaration//GEN-END:variables
 }

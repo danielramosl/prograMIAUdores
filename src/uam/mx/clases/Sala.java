@@ -22,7 +22,7 @@ public final class Sala {
     public void leerAsientos(String s) {
         asientos = new ArrayList<>();
         for(int i = 0; i < s.length(); ++i) {
-            Asiento a = new Asiento(i, toBool(s.charAt(i)));
+            Asiento a = new Asiento(i + 1, toBool(s.charAt(i)));
             asientos.add(a);
         }
     }
@@ -50,5 +50,9 @@ public final class Sala {
 
     public ArrayList<Asiento> getAsientos() {
         return asientos;
+    }
+    
+    public void seleccionarAsiento(int i) {
+        asientos.get(i).setOcupado(true);
     }
 }

@@ -99,6 +99,15 @@ public class SistemaUsuarios {
         return null;
     }
     
+    public int buscarIDUsuario(String s) {
+        for(Usuario u : listaUsuarios) {
+            if(u.getUsuario().equals(s)) {
+                return u.getId();
+            }
+        }
+        return -1;
+    }
+    
     public Empleado buscarEmpleado(Usuario u) {
         for(Empleado e : listaEmpleados) {
             if(e.getId_usuario() == u.getId()) {
@@ -181,6 +190,25 @@ public class SistemaUsuarios {
         String nueva = "";
         for(Usuario us : listaUsuarios) {
             nueva += us.toString();
+        }
+        bw.write(nueva);
+        bw.close();
+        fw.close();
+    }
+    
+    public void actualizarCliente(Cliente c) throws IOException {
+        int index = 0;
+        for(int i = 0; i < listaClientes.size(); ++i) {
+            if(c.getId() == listaClientes.get(i).getId()) {
+                index = i;
+                break;
+            }
+        }
+        FileWriter fw = new FileWriter("src/uam/mx/datos/clientes.dat");
+        BufferedWriter bw = new BufferedWriter(fw);
+        String nueva = "";
+        for(Cliente cl : listaClientes) {
+            nueva += cl.toString();
         }
         bw.write(nueva);
         bw.close();

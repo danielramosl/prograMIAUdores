@@ -17,9 +17,15 @@ public class Asiento {
         this.ocupado = ocupado;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public Boolean getOcupado() {
         return ocupado;
     }
-    
-    
+
+    public void setOcupado(Boolean ocupado) {
+        this.ocupado = ocupado;
+    }
 }
