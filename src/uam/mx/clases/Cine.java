@@ -23,12 +23,11 @@ import java.util.StringTokenizer;
 public class Cine {
     private String nombre_cine;
     private String dirección;
-    private Caja cajaBoleto;
-    private Caja cajaComida;
+    private CajaComida cajaComida;
+    private CajaTaquilla cajaTaquilla;
     private SistemaUsuarios sistemaUsuarios;
     private Cartelera cartelera;
     private Menu menu;
-    private ArrayList<Sala> listaSalas;
 
     public Cine() throws IOException {
         nombre_cine = "PrograMIAUdores";
@@ -36,6 +35,7 @@ public class Cine {
         sistemaUsuarios = new SistemaUsuarios();
         cartelera = new Cartelera();
         menu = new Menu();
+        cajaTaquilla = new CajaTaquilla();
     }
     
     public Cartelera getCartelera() {
@@ -48,5 +48,9 @@ public class Cine {
     
     public SistemaUsuarios getSistemaUsuarios() {
         return sistemaUsuarios;
+    }
+
+    public CajaTaquilla getCajaTaquilla() {
+        return cajaTaquilla;
     }
 }

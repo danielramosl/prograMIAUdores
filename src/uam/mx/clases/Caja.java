@@ -4,22 +4,21 @@
  */
 package uam.mx.clases;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
  *
  * @author prograMIAUdores
  */
-public class Caja {
-    private ArrayList<Object> listaVentas;
-    private float total;
+public abstract class Caja {
+    protected float total;
 
-    public Caja(ArrayList<Object> listaVentas, float total) {
-        this.listaVentas = listaVentas;
+    public Caja(float total) {
         this.total = total;
     }
-
-    public void NuevaVenta() {
-        
-    }
+    
+    public abstract void nuevaVenta(int id_caja, float total, Boolean tipoPago, ArrayList<Boleto> listaBoleto) throws FileNotFoundException, IOException;
 }

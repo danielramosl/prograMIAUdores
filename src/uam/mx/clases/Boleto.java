@@ -18,4 +18,9 @@ public class Boleto {
         this.id_función = id_función;
         this.id_asiento = id_asiento;
     }
+
+    @Override
+    public String toString() {
+        return id + "|" + id_función + "|" + id_asiento;
+    }
 }
