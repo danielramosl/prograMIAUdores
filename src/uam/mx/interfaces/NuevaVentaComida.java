@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import uam.mx.clases.Comida;
+import uam.mx.clases.LineaComida;
 import uam.mx.clases.Película;
 import uam.mx.interfaces.InicioSesión;
 import uam.mx.interfaces.NuevaVentaBoletos;
@@ -29,6 +31,7 @@ public class NuevaVentaComida extends javax.swing.JFrame {
     
     DefaultTableModel modelo = new DefaultTableModel(new String[] {"ID", "Comida", "Cantidad", "Costo", "Subtotal"}, 0);
     ArrayList<Comida> al = InicioSesión.cine.getMenu().getListaComidas();
+    int index = 0;
     
     public NuevaVentaComida() {
         initComponents();
@@ -81,17 +84,18 @@ public class NuevaVentaComida extends javax.swing.JFrame {
     }
     
     
-    public void AgregarATabla(Comida comida, int cantidad) {
+    public void AgregarATabla(LineaComida lineaComida) {
         if (modelo.getValueAt(0, 0) == null) {
             modelo.removeRow(0);
         }
         try {
+            Comida c = al.get(lineaComida.getId_comida());
             modelo.addRow(new Object[] { 
-                comida.getId(),
-                comida.getNombre(),
-                cantidad,
-                comida.getPrecio(),
-                cantidad * comida.getPrecio()
+                lineaComida.getId(),
+                c.getNombre(),
+                lineaComida.getCantidad(),
+                c.getPrecio(),
+                lineaComida.getSubtotal(c)
             });
             
            ObtenerTotal();
@@ -122,7 +126,6 @@ public class NuevaVentaComida extends javax.swing.JFrame {
             int pos = Integer.parseInt(modelo.getValueAt(i, 0).toString());
             int cantidad = Integer.parseInt(modelo.getValueAt(i, 2).toString());
             al.get(pos).setInventario(al.get(pos).getInventario() - cantidad);
-            // falta actualizar en el archivo .dat
         }
     }
       
@@ -176,7 +179,6 @@ public class NuevaVentaComida extends javax.swing.JFrame {
         lbl_NombreComida = new javax.swing.JLabel();
         lbl_CostoComida = new javax.swing.JLabel();
         btn_Agregar = new javax.swing.JButton();
-        btn_Eliminar = new javax.swing.JButton();
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -503,13 +505,6 @@ public class NuevaVentaComida extends javax.swing.JFrame {
             }
         });
 
-        btn_Eliminar.setBackground(new java.awt.Color(143, 29, 32));
-        btn_Eliminar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        btn_Eliminar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_Eliminar.setText("Eliminar");
-        btn_Eliminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_Eliminar.setBorderPainted(false);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -555,8 +550,6 @@ public class NuevaVentaComida extends javax.swing.JFrame {
                                 .addGap(1, 1, 1))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btn_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jp_DatosComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -598,9 +591,7 @@ public class NuevaVentaComida extends javax.swing.JFrame {
                             .addComponent(lbl_Cantidad)
                             .addComponent(sp_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btn_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16)
                         .addComponent(jp_TablaComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jp_DatosComida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -652,11 +643,12 @@ public class NuevaVentaComida extends javax.swing.JFrame {
     private void btn_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarActionPerformed
         int sel = (Integer)sp_Cantidad.getValue();
         if(sel < 1 || cmb_Comida.getSelectedIndex() < 1) {
-            //cmb_Asiento.removeAllItems();
-            //lbl_Subtotal.setText("");
+            JOptionPane.showMessageDialog(null, "Debes escoger un número mayor a 0", "Error", JOptionPane.WARNING_MESSAGE);
         } else {
           Comida comida = al.get(cmb_Comida.getSelectedIndex()-1);
-          AgregarATabla(comida, sel);
+          LineaComida lineaComida = new LineaComida(index,comida.getId(),sel);
+          index++;
+          AgregarATabla(lineaComida);
           ObtenerTotal();
         }
     }//GEN-LAST:event_btn_AgregarActionPerformed
@@ -739,7 +731,6 @@ public class NuevaVentaComida extends javax.swing.JFrame {
     private javax.swing.JButton btn_Cerrar;
     private javax.swing.JButton btn_CompletarVenta;
     private javax.swing.JButton btn_Continuar;
-    private javax.swing.JButton btn_Eliminar;
     private javax.swing.JButton btn_Regresar;
     private javax.swing.JComboBox<String> cmb_Comida;
     private javax.swing.JComboBox<String> cmb_TipoPago;

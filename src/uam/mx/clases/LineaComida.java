@@ -19,4 +19,23 @@ public class LineaComida {
         this.id_comida = id_comida;
         this.cantidad = cantidad;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getId_comida() {
+        return id_comida;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public float getSubtotal(Comida c) {
+        subtotal = cantidad * c.getPrecio();
+        return subtotal;
+    }
+    
+    
 }
