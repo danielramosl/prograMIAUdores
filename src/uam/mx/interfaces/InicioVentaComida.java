@@ -4,6 +4,10 @@
  */
 package uam.mx.interfaces;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author prograMIAUdores
@@ -70,6 +74,11 @@ public class InicioVentaComida extends javax.swing.JFrame {
         btn_CerrarSesion.setText("Cerrar sesión");
         btn_CerrarSesion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_CerrarSesion.setBorderPainted(false);
+        btn_CerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CerrarSesionActionPerformed(evt);
+            }
+        });
 
         loguito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uam/mx/interfaces/imagenes/loguito.png"))); // NOI18N
 
@@ -167,6 +176,18 @@ public class InicioVentaComida extends javax.swing.JFrame {
        NuevaVentaComida nuevaVentaComida = new NuevaVentaComida();
        nuevaVentaComida.setVisible(true);
     }//GEN-LAST:event_btn_NuevaVentaActionPerformed
+
+    private void btn_CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarSesionActionPerformed
+       try {
+            // TODO add your handling code here:
+            InicioSesión.usuarioActual = null;
+            this.dispose();
+            InicioSesión inicioSesión = new InicioSesión();
+            inicioSesión.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(InicioCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btn_CerrarSesionActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,9 +4,18 @@
  */
 package uam.mx.interfaces;
 
+import java.awt.Color;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import uam.mx.clases.Comida;
 import uam.mx.clases.Película;
+import uam.mx.interfaces.InicioSesión;
+import uam.mx.interfaces.NuevaVentaBoletos;
 
 /**
  *
@@ -17,18 +26,107 @@ public class NuevaVentaComida extends javax.swing.JFrame {
     /**
      * Creates new form NuevaVentaComida
      */
+    
+    DefaultTableModel modelo = new DefaultTableModel(new String[] {"ID", "Comida", "Cantidad", "Costo", "Subtotal"}, 0);
+    ArrayList<Comida> al = InicioSesión.cine.getMenu().getListaComidas();
+    
     public NuevaVentaComida() {
         initComponents();
-        llenarPelícula();
+        llenarComida();
+        crearTabla();
+        llenarTipoPago();
     }
-    public void llenarPelícula() {
+    
+    public void llenarComida() {
         cmb_Comida.removeAllItems();
-        ArrayList<Comida> al = InicioSesión.cine.getMenu().getListaComidas();
         cmb_Comida.addItem("-Seleccionar-");
         for(Comida c : al) {
             cmb_Comida.addItem(c.getNombre());
         }
     }
+    
+    public void crearTabla(){
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        
+        try {
+            modelo.addRow(new Object[] { 
+                null,
+                null,
+                0,
+                0,
+                0
+            });
+            
+            tbl_Comida.setModel(modelo);
+            tbl_Comida.setRowHeight(20);
+            
+            tbl_Comida.getColumnModel().getColumn(0).setPreferredWidth(100); // ID
+            tbl_Comida.getColumnModel().getColumn(1).setPreferredWidth(300); // Comida
+            tbl_Comida.getColumnModel().getColumn(2).setPreferredWidth(150); // Cantidad
+            tbl_Comida.getColumnModel().getColumn(3).setPreferredWidth(150); // Costo
+            tbl_Comida.getColumnModel().getColumn(4).setPreferredWidth(150); // Subtotal
+                    
+            tbl_Comida.getTableHeader().setDefaultRenderer(centerRenderer); 
+            
+            for (int i = 1; i < tbl_Comida.getColumnCount(); i++) {
+                tbl_Comida.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+            }
+            
+        } 
+        catch (Exception ex) {
+             System.err.println("Ha ocurrido un error" + ex.getMessage());
+        }
+    
+    }
+    
+    
+    public void AgregarATabla(Comida comida, int cantidad) {
+        if (modelo.getValueAt(0, 0) == null) {
+            modelo.removeRow(0);
+        }
+        try {
+            modelo.addRow(new Object[] { 
+                comida.getId(),
+                comida.getNombre(),
+                cantidad,
+                comida.getPrecio(),
+                cantidad * comida.getPrecio()
+            });
+            
+           ObtenerTotal();
+        } 
+        catch (Exception ex) {
+             System.err.println("Ha ocurrido un error" + ex.getMessage());
+        }
+    }
+    
+    public void ObtenerTotal(){
+        float total = 0;
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            float subtotal = Float.parseFloat(modelo.getValueAt(i, 4).toString());
+            total += subtotal;       
+        }
+        lbl_Total.setText(String.valueOf(total));
+    }
+    
+      public void llenarTipoPago() {
+        cmb_TipoPago.removeAllItems();
+        cmb_TipoPago.addItem("-Seleccionar-");
+        cmb_TipoPago.addItem("Efectivo");
+        cmb_TipoPago.addItem("Tarjeta");
+    }
+    
+    public void ActualizarInventario(){
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            int pos = Integer.parseInt(modelo.getValueAt(i, 0).toString());
+            int cantidad = Integer.parseInt(modelo.getValueAt(i, 2).toString());
+            al.get(pos).setInventario(al.get(pos).getInventario() - cantidad);
+            // falta actualizar en el archivo .dat
+        }
+    }
+      
+      
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,18 +148,21 @@ public class NuevaVentaComida extends javax.swing.JFrame {
         txt_NumTarjeta = new javax.swing.JTextField();
         btn_Continuar = new javax.swing.JButton();
         btn_Cancelar = new javax.swing.JButton();
+        dlg_MICHísimasGracias = new javax.swing.JDialog();
+        jp_PagoTarjeta1 = new javax.swing.JPanel();
+        lbl_PagoTarjeta1 = new javax.swing.JLabel();
+        btn_Cerrar = new javax.swing.JButton();
+        lbl_Username = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         loguito = new javax.swing.JLabel();
         lbl_Usuario = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         lbl_Cantidad = new javax.swing.JLabel();
         lbl_Comida = new javax.swing.JLabel();
-        lbl_CambioPuntos = new javax.swing.JLabel();
         cmb_Comida = new javax.swing.JComboBox<>();
         lbl_TotalT = new javax.swing.JLabel();
         lbl_Total = new javax.swing.JLabel();
         lbl_TipoPago = new javax.swing.JLabel();
-        lbl_Variables = new javax.swing.JLabel();
         sp_Cantidad = new javax.swing.JSpinner();
         lbl_Titulo = new javax.swing.JLabel();
         cmb_TipoPago = new javax.swing.JComboBox<>();
@@ -112,6 +213,11 @@ public class NuevaVentaComida extends javax.swing.JFrame {
         btn_Continuar.setText("Continuar");
         btn_Continuar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_Continuar.setBorderPainted(false);
+        btn_Continuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ContinuarActionPerformed(evt);
+            }
+        });
 
         btn_Cancelar.setBackground(new java.awt.Color(102, 102, 102));
         btn_Cancelar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -119,6 +225,11 @@ public class NuevaVentaComida extends javax.swing.JFrame {
         btn_Cancelar.setText("Cancelar");
         btn_Cancelar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_Cancelar.setBorderPainted(false);
+        btn_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -188,6 +299,63 @@ public class NuevaVentaComida extends javax.swing.JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jp_PagoTarjeta1.setBackground(new java.awt.Color(255, 255, 255));
+
+        lbl_PagoTarjeta1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        lbl_PagoTarjeta1.setText("¡Compra exitosa! Felinamente feliz");
+
+        btn_Cerrar.setBackground(new java.awt.Color(57, 105, 138));
+        btn_Cerrar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        btn_Cerrar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_Cerrar.setText("Cerrar");
+        btn_Cerrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_Cerrar.setBorderPainted(false);
+        btn_Cerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CerrarActionPerformed(evt);
+            }
+        });
+
+        lbl_Username.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+
+        javax.swing.GroupLayout jp_PagoTarjeta1Layout = new javax.swing.GroupLayout(jp_PagoTarjeta1);
+        jp_PagoTarjeta1.setLayout(jp_PagoTarjeta1Layout);
+        jp_PagoTarjeta1Layout.setHorizontalGroup(
+            jp_PagoTarjeta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jp_PagoTarjeta1Layout.createSequentialGroup()
+                .addContainerGap(112, Short.MAX_VALUE)
+                .addGroup(jp_PagoTarjeta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_Username)
+                    .addComponent(lbl_PagoTarjeta1))
+                .addContainerGap(112, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_PagoTarjeta1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_Cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(95, 95, 95))
+        );
+        jp_PagoTarjeta1Layout.setVerticalGroup(
+            jp_PagoTarjeta1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jp_PagoTarjeta1Layout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addComponent(lbl_Username)
+                .addGap(31, 31, 31)
+                .addComponent(lbl_PagoTarjeta1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_Cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(112, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout dlg_MICHísimasGraciasLayout = new javax.swing.GroupLayout(dlg_MICHísimasGracias.getContentPane());
+        dlg_MICHísimasGracias.getContentPane().setLayout(dlg_MICHísimasGraciasLayout);
+        dlg_MICHísimasGraciasLayout.setHorizontalGroup(
+            dlg_MICHísimasGraciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jp_PagoTarjeta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        dlg_MICHísimasGraciasLayout.setVerticalGroup(
+            dlg_MICHísimasGraciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jp_PagoTarjeta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -202,9 +370,6 @@ public class NuevaVentaComida extends javax.swing.JFrame {
 
         lbl_Comida.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_Comida.setText("Comida:");
-
-        lbl_CambioPuntos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lbl_CambioPuntos.setText("Cambio/Puntos:");
 
         cmb_Comida.setBackground(java.awt.SystemColor.control);
         cmb_Comida.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -226,9 +391,6 @@ public class NuevaVentaComida extends javax.swing.JFrame {
         lbl_TipoPago.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbl_TipoPago.setText("Tipo de pago:");
 
-        lbl_Variables.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lbl_Variables.setText("cambio/puntos");
-
         sp_Cantidad.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         sp_Cantidad.setBorder(null);
 
@@ -247,6 +409,11 @@ public class NuevaVentaComida extends javax.swing.JFrame {
         btn_Regresar.setText("Regresar");
         btn_Regresar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_Regresar.setBorderPainted(false);
+        btn_Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RegresarActionPerformed(evt);
+            }
+        });
 
         btn_CompletarVenta.setBackground(new java.awt.Color(57, 105, 138));
         btn_CompletarVenta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -254,6 +421,11 @@ public class NuevaVentaComida extends javax.swing.JFrame {
         btn_CompletarVenta.setText("Completar venta");
         btn_CompletarVenta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_CompletarVenta.setBorderPainted(false);
+        btn_CompletarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CompletarVentaActionPerformed(evt);
+            }
+        });
 
         jp_TablaComida.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -325,6 +497,11 @@ public class NuevaVentaComida extends javax.swing.JFrame {
         btn_Agregar.setText("Agregar");
         btn_Agregar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_Agregar.setBorderPainted(false);
+        btn_Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AgregarActionPerformed(evt);
+            }
+        });
 
         btn_Eliminar.setBackground(new java.awt.Color(143, 29, 32));
         btn_Eliminar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -365,11 +542,7 @@ public class NuevaVentaComida extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lbl_CambioPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lbl_Variables, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jp_TablaComida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -378,8 +551,8 @@ public class NuevaVentaComida extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(sp_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cmb_Comida, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addComponent(cmb_Comida, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(1, 1, 1))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -387,7 +560,7 @@ public class NuevaVentaComida extends javax.swing.JFrame {
                                 .addComponent(btn_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jp_DatosComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(21, Short.MAX_VALUE))))
+                        .addGap(21, 21, 21))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbl_TotalT, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -439,11 +612,7 @@ public class NuevaVentaComida extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_TipoPago)
                     .addComponent(cmb_TipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_CambioPuntos)
-                    .addComponent(lbl_Variables))
-                .addGap(12, 12, 12)
+                .addGap(49, 49, 49)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_CompletarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -473,6 +642,61 @@ public class NuevaVentaComida extends javax.swing.JFrame {
             lbl_ComidaFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource(c.getPortada())));
         }
     }//GEN-LAST:event_cmb_ComidaItemStateChanged
+
+    private void btn_RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegresarActionPerformed
+       this.dispose();
+       InicioVentaComida inicioVentaComida = new InicioVentaComida();
+       inicioVentaComida.setVisible(true);        
+    }//GEN-LAST:event_btn_RegresarActionPerformed
+
+    private void btn_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarActionPerformed
+        int sel = (Integer)sp_Cantidad.getValue();
+        if(sel < 1 || cmb_Comida.getSelectedIndex() < 1) {
+            //cmb_Asiento.removeAllItems();
+            //lbl_Subtotal.setText("");
+        } else {
+          Comida comida = al.get(cmb_Comida.getSelectedIndex()-1);
+          AgregarATabla(comida, sel);
+          ObtenerTotal();
+        }
+    }//GEN-LAST:event_btn_AgregarActionPerformed
+
+    private void btn_CompletarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CompletarVentaActionPerformed
+              // TODO add your handling code here:
+        if(cmb_TipoPago.getSelectedIndex() == 1) {
+            dlg_MICHísimasGracias.setSize(600, 320);
+            dlg_MICHísimasGracias.setLocationRelativeTo(this);
+            dlg_MICHísimasGracias.setVisible(true);
+            ActualizarInventario();
+        } else if(cmb_TipoPago.getSelectedIndex() == 2) {
+            dlg_PagoTarjeta.setSize(600, 400);
+            dlg_PagoTarjeta.setLocationRelativeTo(this);
+            dlg_PagoTarjeta.setVisible(true);
+            cmb_TipoTarjeta.removeAllItems();
+            cmb_TipoTarjeta.addItem("-Seleccionar-");
+            cmb_TipoTarjeta.addItem("Débito");
+            cmb_TipoTarjeta.addItem("Crédito");
+        }         
+    }//GEN-LAST:event_btn_CompletarVentaActionPerformed
+
+    private void btn_CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarActionPerformed
+       dlg_MICHísimasGracias.dispose();
+        this.dispose();
+        InicioVentaComida inicioVentaComida = new InicioVentaComida();
+        inicioVentaComida.setVisible(true);
+    }//GEN-LAST:event_btn_CerrarActionPerformed
+
+    private void btn_ContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ContinuarActionPerformed
+        dlg_PagoTarjeta.dispose();
+        dlg_MICHísimasGracias.setSize(600, 320);
+        dlg_MICHísimasGracias.setLocationRelativeTo(this);
+        dlg_MICHísimasGracias.setVisible(true);
+        ActualizarInventario();
+    }//GEN-LAST:event_btn_ContinuarActionPerformed
+
+    private void btn_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CancelarActionPerformed
+        dlg_PagoTarjeta.dispose();
+    }//GEN-LAST:event_btn_CancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -512,6 +736,7 @@ public class NuevaVentaComida extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Agregar;
     private javax.swing.JButton btn_Cancelar;
+    private javax.swing.JButton btn_Cerrar;
     private javax.swing.JButton btn_CompletarVenta;
     private javax.swing.JButton btn_Continuar;
     private javax.swing.JButton btn_Eliminar;
@@ -519,14 +744,15 @@ public class NuevaVentaComida extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmb_Comida;
     private javax.swing.JComboBox<String> cmb_TipoPago;
     private javax.swing.JComboBox<String> cmb_TipoTarjeta;
+    private javax.swing.JDialog dlg_MICHísimasGracias;
     private javax.swing.JDialog dlg_PagoTarjeta;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel jp_DatosComida;
+    private javax.swing.JPanel jp_PagoTarjeta1;
     private javax.swing.JPanel jp_TablaComida;
-    private javax.swing.JLabel lbl_CambioPuntos;
     private javax.swing.JLabel lbl_Cantidad;
     private javax.swing.JLabel lbl_Comida;
     private javax.swing.JLabel lbl_ComidaFoto;
@@ -536,13 +762,14 @@ public class NuevaVentaComida extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_NombreCompleto;
     private javax.swing.JLabel lbl_NumTarjeta;
     private javax.swing.JLabel lbl_PagoTarjeta;
+    private javax.swing.JLabel lbl_PagoTarjeta1;
     private javax.swing.JLabel lbl_TipoPago;
     private javax.swing.JLabel lbl_TipoTarjeta;
     private javax.swing.JLabel lbl_Titulo;
     private javax.swing.JLabel lbl_Total;
     private javax.swing.JLabel lbl_TotalT;
+    private javax.swing.JLabel lbl_Username;
     private javax.swing.JLabel lbl_Usuario;
-    private javax.swing.JLabel lbl_Variables;
     private javax.swing.JLabel loguito;
     private javax.swing.JSpinner sp_Cantidad;
     private javax.swing.JTable tbl_Comida;

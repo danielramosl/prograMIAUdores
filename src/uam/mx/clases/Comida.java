@@ -49,4 +49,8 @@ public class Comida {
         return portada;
     }
 
+    public void setInventario(int inventario) {
+        this.inventario = inventario;
+    }
+
 }

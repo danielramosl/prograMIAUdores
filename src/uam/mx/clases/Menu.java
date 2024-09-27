@@ -5,8 +5,10 @@
 package uam.mx.clases;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -44,6 +46,11 @@ public class Menu {
         }
         br.close();
         fr.close();
+    }
+    
+    private void ActualizarInventario(Comida c){
+       
+
     }
     
     public ArrayList<Comida> getListaComidas() {
