@@ -11,7 +11,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import uam.mx.clases.Comida;
-import uam.mx.clases.Función;
 
 /**
  *

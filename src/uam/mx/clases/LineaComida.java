@@ -36,6 +36,10 @@ public class LineaComida {
         subtotal = cantidad * c.getPrecio();
         return subtotal;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
     
 }
