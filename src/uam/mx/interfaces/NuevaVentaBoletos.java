@@ -41,6 +41,7 @@ public final class NuevaVentaBoletos extends javax.swing.JFrame {
         txt_NombreCliente.setCaretColor(Color.white);
         llenarDescuento();
         llenarTipoPago();
+        sp_Cantidad.setValue(1);
     }
     
     public void llenarTipoPago() {
@@ -101,6 +102,7 @@ public final class NuevaVentaBoletos extends javax.swing.JFrame {
         txt_NumTarjeta = new javax.swing.JTextField();
         btn_Continuar = new javax.swing.JButton();
         btn_Cancelar = new javax.swing.JButton();
+        lbl_TarjetaMensaje = new javax.swing.JLabel();
         dlg_MICHísimasGracias = new javax.swing.JDialog();
         jp_PagoTarjeta1 = new javax.swing.JPanel();
         lbl_PagoTarjeta1 = new javax.swing.JLabel();
@@ -215,14 +217,10 @@ public final class NuevaVentaBoletos extends javax.swing.JFrame {
                 .addComponent(lbl_PagoTarjeta)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jp_PagoTarjetaLayout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addGroup(jp_PagoTarjetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jp_PagoTarjetaLayout.createSequentialGroup()
-                        .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_Continuar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jp_PagoTarjetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jp_PagoTarjetaLayout.createSequentialGroup()
+                    .addGroup(jp_PagoTarjetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jp_PagoTarjetaLayout.createSequentialGroup()
                             .addGroup(jp_PagoTarjetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(lbl_NumTarjeta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lbl_NombreCompleto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -230,11 +228,17 @@ public final class NuevaVentaBoletos extends javax.swing.JFrame {
                             .addGroup(jp_PagoTarjetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txt_NombreCompleto)
                                 .addComponent(txt_NumTarjeta)))
-                        .addComponent(lbl_DatosTarjeta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jp_PagoTarjetaLayout.createSequentialGroup()
+                        .addComponent(lbl_DatosTarjeta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jp_PagoTarjetaLayout.createSequentialGroup()
                             .addComponent(lbl_TipoTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(15, 15, 15)
-                            .addComponent(cmb_TipoTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cmb_TipoTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jp_PagoTarjetaLayout.createSequentialGroup()
+                        .addComponent(lbl_TarjetaMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_Continuar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 49, Short.MAX_VALUE))
         );
         jp_PagoTarjetaLayout.setVerticalGroup(
@@ -259,7 +263,8 @@ public final class NuevaVentaBoletos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jp_PagoTarjetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Continuar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_Continuar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_TarjetaMensaje, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -832,7 +837,9 @@ public final class NuevaVentaBoletos extends javax.swing.JFrame {
     }//GEN-LAST:event_sp_CantidadInputMethodTextChanged
 
     private void sp_CantidadStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sp_CantidadStateChanged
-
+        if((Integer)sp_Cantidad.getValue() <= 0) {
+            sp_Cantidad.setValue(1);
+        }
     }//GEN-LAST:event_sp_CantidadStateChanged
 
     private void btn_SeleccionarAsientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SeleccionarAsientosActionPerformed
@@ -933,23 +940,27 @@ public final class NuevaVentaBoletos extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_CompletarVentaActionPerformed
 
     private void btn_ContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ContinuarActionPerformed
-            try {
-                dlg_PagoTarjeta.dispose();
-                puntosAñadidos += cliente.getPuntos();
-                cliente.setPuntos(puntosAñadidos);
-                InicioSesión.cine.getCartelera().actualizarSala(función);
-                InicioSesión.cine.getSistemaUsuarios().actualizarCliente(cliente);
-                dlg_MICHísimasGracias.setSize(600, 320);
-                dlg_MICHísimasGracias.setLocationRelativeTo(this);
-                dlg_MICHísimasGracias.setVisible(true);
-                lbl_Username.setText(cliente.getNombre());
-                txt_Puntos.setEditable(true);
-                txt_Puntos.setCaretColor(Color.white);
-                txt_Puntos.setText(Integer.toString(cliente.getPuntos()));
-                InicioSesión.cine.getCajaTaquilla().nuevaVenta(0, Float.parseFloat(lbl_Total.getText()), true, listaBoleto);
-            } catch (IOException ex) {
-                Logger.getLogger(NuevaVentaBoletos.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            if(txt_NumTarjeta.getText().length() == 16) {
+                try {
+                    dlg_PagoTarjeta.dispose();
+                    puntosAñadidos += cliente.getPuntos();
+                    cliente.setPuntos(puntosAñadidos);
+                    InicioSesión.cine.getCartelera().actualizarSala(función);
+                    InicioSesión.cine.getSistemaUsuarios().actualizarCliente(cliente);
+                    dlg_MICHísimasGracias.setSize(600, 320);
+                    dlg_MICHísimasGracias.setLocationRelativeTo(this);
+                    dlg_MICHísimasGracias.setVisible(true);
+                    lbl_Username.setText(cliente.getNombre());
+                    txt_Puntos.setEditable(true);
+                    txt_Puntos.setCaretColor(Color.white);
+                    txt_Puntos.setText(Integer.toString(cliente.getPuntos()));
+                    InicioSesión.cine.getCajaTaquilla().nuevaVenta(0, Float.parseFloat(lbl_Total.getText()), true, listaBoleto);
+                } catch (IOException ex) {
+                    Logger.getLogger(NuevaVentaBoletos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        } else {
+            lbl_TarjetaMensaje.setText("Número incorrecto.");
+        }
     }//GEN-LAST:event_btn_ContinuarActionPerformed
 
     private void btn_Continuar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Continuar1ActionPerformed
@@ -1044,6 +1055,7 @@ public final class NuevaVentaBoletos extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_SeleccionarFuncion;
     private javax.swing.JLabel lbl_Subtotal;
     private javax.swing.JLabel lbl_SubtotalT;
+    private javax.swing.JLabel lbl_TarjetaMensaje;
     private javax.swing.JLabel lbl_TipoPago;
     private javax.swing.JLabel lbl_TipoTarjeta;
     private javax.swing.JLabel lbl_Titulo;
