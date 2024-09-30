@@ -33,8 +33,6 @@ public class Venta {
         return total;
     }
     
-    
-    
     @Override
     public String toString() {
         return id + "," + id_caja + "," + fecha + "," + total + "," + tipoPago;

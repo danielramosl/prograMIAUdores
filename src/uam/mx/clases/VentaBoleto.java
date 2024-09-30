@@ -35,8 +35,6 @@ public class VentaBoleto extends Venta {
         listaBoletos.add(b);
     }
     
-    
-
     @Override
     public String toString() {
         String s = super.toString();

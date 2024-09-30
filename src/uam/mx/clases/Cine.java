@@ -36,6 +36,11 @@ public class Cine {
         cartelera = new Cartelera();
         menu = new Menu();
         cajaTaquilla = new CajaTaquilla();
+        cajaComida = new CajaComida();
+    }
+    
+    public CajaComida getCajaComida() {
+        return cajaComida;
     }
     
     public Cartelera getCartelera() {

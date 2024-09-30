@@ -19,6 +19,4 @@ public abstract class Caja {
     public Caja(float total) {
         this.total = total;
     }
-    
-    public abstract void nuevaVenta(int id_caja, float total, Boolean tipoPago, ArrayList<Boleto> listaBoleto) throws FileNotFoundException, IOException;
 }

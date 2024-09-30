@@ -41,5 +41,8 @@ public class LineaComida {
         this.id = id;
     }
     
-    
+    @Override
+    public String toString() {
+        return id + "|" + id_comida + "|" + cantidad;
+    }
 }

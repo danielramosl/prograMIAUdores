@@ -58,7 +58,6 @@ public class CajaTaquilla extends Caja {
         return listaVenta.getLast().getId() + 1;
     }
     
-    @Override
     public void nuevaVenta(int id_caja, float total, Boolean tipoPago, ArrayList<Boleto> listaBoleto) throws FileNotFoundException, IOException {
         int id = nuevoIDVenta();
         VentaBoleto vb = new VentaBoleto(id, id_caja, LocalDateTime.now(), total, tipoPago, listaBoleto);

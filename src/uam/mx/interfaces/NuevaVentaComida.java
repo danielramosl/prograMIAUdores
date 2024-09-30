@@ -4,7 +4,6 @@
  */
 package uam.mx.interfaces;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,9 +15,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import uam.mx.clases.Comida;
 import uam.mx.clases.LineaComida;
-import uam.mx.clases.Película;
-import uam.mx.interfaces.InicioSesión;
-import uam.mx.interfaces.NuevaVentaBoletos;
 
 /**
  *
@@ -32,6 +28,7 @@ public class NuevaVentaComida extends javax.swing.JFrame {
  DefaultTableModel modelo = new DefaultTableModel(new String[] {"ID", "ID Comida", "Comida", "Cantidad", "Costo", "Subtotal"}, 0);
     ArrayList<Comida> al = InicioSesión.cine.getMenu().getListaComidas();
     int index = 0;
+    ArrayList<LineaComida> llc = new ArrayList<>();
     
     public NuevaVentaComida() {
         initComponents();
@@ -100,7 +97,7 @@ public class NuevaVentaComida extends javax.swing.JFrame {
                 c.getPrecio(),
                 lineaComida.getSubtotal(c)
             });
-            
+            llc.add(lineaComida);
            ObtenerTotal();
         } 
         catch (Exception ex) {
@@ -877,11 +874,17 @@ public class NuevaVentaComida extends javax.swing.JFrame {
 
     private void btn_ContinuarEfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ContinuarEfActionPerformed
         if(Float.parseFloat(txt_monto.getText()) >= Float.parseFloat(lbl_Total.getText())) {
-            dlg_PagoEfectivo.dispose();
-            dlg_MICHísimasGracias.setSize(600, 350);
-            dlg_MICHísimasGracias.setLocationRelativeTo(this);
-            dlg_MICHísimasGracias.setVisible(true);
-            /*ActualizarInventario();*/
+            
+            try {
+                dlg_PagoEfectivo.dispose();
+                dlg_MICHísimasGracias.setSize(600, 350);
+                dlg_MICHísimasGracias.setLocationRelativeTo(this);
+                dlg_MICHísimasGracias.setVisible(true);
+                InicioSesión.cine.getCajaComida().nuevaVenta(0, Float.parseFloat(lbl_Total.getText()), false, llc);
+                /*ActualizarInventario();*/
+            } catch (IOException ex) {
+                Logger.getLogger(NuevaVentaComida.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
              JOptionPane.showMessageDialog(null, "Monto menor al total a pagar", "Error", JOptionPane.WARNING_MESSAGE);
         }
