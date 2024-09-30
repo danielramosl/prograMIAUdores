@@ -152,7 +152,7 @@ public class NuevaVentaComida extends javax.swing.JFrame {
     
     /*  public void ActualizarInventario(){
     for (int i = 0; i < modelo.getRowCount(); i++) {
-    int pos = Integer.parseInt(modelo.getValueAt(i, 0).toString());
+    int pos = Integer.parseInt(modelo.getValueAt(i, 0).toString()); 
     int cantidad = Integer.parseInt(modelo.getValueAt(i, 2).toString());
     al.get(pos).setInventario(al.get(pos).getInventario() - cantidad);
     }
@@ -824,7 +824,6 @@ public class NuevaVentaComida extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_AgregarActionPerformed
 
     private void btn_CompletarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CompletarVentaActionPerformed
-   
         if(cmb_TipoPago.getSelectedIndex() == 1) {
             dlg_PagoEfectivo.setSize(600, 400);
             dlg_PagoEfectivo.setLocationRelativeTo(this);
@@ -841,7 +840,7 @@ public class NuevaVentaComida extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_CompletarVentaActionPerformed
 
     private void btn_CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarActionPerformed
-       dlg_MICHísimasGracias.dispose();
+        dlg_MICHísimasGracias.dispose();
         this.dispose();
         InicioVentaComida inicioVentaComida = new InicioVentaComida();
         inicioVentaComida.setVisible(true);

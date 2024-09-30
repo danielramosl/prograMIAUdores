@@ -462,10 +462,13 @@ public final class GestionarEmpleados extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(GestionarEmpleados.class.getName()).log(Level.SEVERE, null, ex);
         }
+        JOptionPane.showMessageDialog(null, "Empleado eliminado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
+        InicioAdministrador inicioAdministrador = new InicioAdministrador();
+        inicioAdministrador.setVisible(true);
     }//GEN-LAST:event_btn_EliminarActionPerformed
 
     private void btn_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CancelarActionPerformed
-        // TODO add your handling code here:
         dlg_EliminarEmpleado.dispose();
     }//GEN-LAST:event_btn_CancelarActionPerformed
 
